@@ -1,0 +1,37 @@
+* {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+
+#pizzaForm{
+    display:flex;
+    flex-direction:column;
+    width: 25rem;
+    gap:1.5rem;
+    margin: 1rem;
+    
+}
+
+#orderOutput{
+    margin: 1rem;
+}
+button{
+    padding: 0.5rem;
+    cursor: pointer;
+    border:none;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;   
+    border-radius: 0.5rem;
+}
+
+button:hover{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px inset;
+}
+
+select,input {
+    padding: 0.3rem;
+    border-radius: 0.5rem;
+    border:none;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px inset;
+}
