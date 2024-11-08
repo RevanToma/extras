@@ -83,6 +83,18 @@ document.querySelectorAll(".title").forEach((title) => {
 
     description.classList.toggle("active")
     chevronIcon.classList.toggle("up")
+
+    if (description.classList.contains("active")) {
+      section.style.maxHeight = "10rem";
+      this.style.backgroundColor = "#7faaaa"
+      this.style.color = "#ffff"
+    } else {
+      section.style.maxHeight = "6rem";
+      this.style.backgroundColor = "" 
+      this.style.color = "#000"
+
+    }
+
   })
 })
 
