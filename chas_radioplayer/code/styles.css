@@ -1,0 +1,106 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+body{
+   display: grid;
+   place-items: center;
+}
+
+#channels{
+   display: grid;
+   place-content: center;
+   padding: 1rem;
+   gap: 1rem;
+}
+
+.channelContainer{
+    display: flex;
+    align-items: center;
+    gap:0.5rem;
+    height: 15rem;
+    width: 40rem;
+    border-radius: 0.5rem;
+}
+
+.channelContainer > div {    
+   display: flex;
+   height: 100%;
+   width: 100%;
+   flex-direction: column;
+   justify-content: space-evenly;
+   padding: 0 1rem;
+}
+.channelContainer > div > span{
+    color: white;
+    
+}
+
+.channelInfo{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+.btn {
+    border: 0px solid #fff;
+    padding: 0.5em 2em;
+    min-width: 10rem;
+    background: none;
+    position: relative;
+    cursor: pointer;
+    box-shadow: inset -2px 1px 11px rgba(0,0,0,0.5);
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+    font-size: large;
+}
+
+svg {
+    position: absolute;
+    inset: 0;
+    fill: none;
+    stroke: #fff;
+    stroke-width: 5px;
+    stroke-dasharray: 40 297;
+    stroke-dashoffset: 200;
+    transition: all 0.5s linear;
+}
+
+.btn:hover {
+    background-color: #04b7e9;
+    box-shadow: none;
+}
+
+.btn:hover svg {
+    stroke-width: 2px;
+    stroke-dashoffset: -500;
+}
+
+.btn:active {
+    transform: scale(1.001);
+    background-color: #02a7d4;
+}
+
+
+.channelContainer img{
+    aspect-ratio: 1/1;
+    height: 100%;
+}
+
+.loadMore{
+    width: 20rem;
+
+}
+
+audio {
+    width: 100%;
+    border-radius: 5rem;
+    box-shadow: -2px 1px 11px rgba(0,0,0,0.5);
+}
+
