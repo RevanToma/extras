@@ -1,77 +1,331 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="./output.css" rel="stylesheet" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <nav class="bg-white shadow-md">
-        <div class="container mx-auto px-2 py-4 flex justify-between items-center">
-          <a href="#" class="text-4xl font-bold text-blue-600">Zoom</a>
-      
-          <button
-            id="menu-toggle"
-            class="block md:hidden text-gray-600 hover:text-gray-800 focus:outline-none"
+      <div
+        class="container mx-auto px-2 py-4 flex justify-between items-center"
+      >
+        <a href="#" class="text-4xl font-bold text-blue-600">Zoom</a>
+
+        <button
+          id="menu-toggle"
+          class="block md:hidden text-gray-600 hover:text-gray-800 focus:outline-none"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-            </svg>
-          </button>
-      
-          <ul
-            id="menu"
-            class="px-2 hidden md:flex md:space-x-4 flex-col md:flex-row 
-            bg-white md:bg-transparent md:w-auto w-full absolute md:relative top-16 
-            md:top-0 left-0 md:left-auto shadow-lg md:shadow-none md:py-0 py-6
-            justify-center items-center space-y-4 md:space-y-0 "
-    >
-    
-          <li><a href="#" class="text-gray-600 hover:text-gray-800 ">Products</a></li>
-          <li><a href="#" class="text-gray-600 hover:text-gray-800">Solutions</a></li>
-          <li><a href="#" class="text-gray-600 hover:text-gray-800">Resources</a></li>
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16m-7 6h7"
+            />
+          </svg>
+        </button>
+
+        <ul
+          id="menu"
+          class="px-2 hidden md:flex md:space-x-4 flex-col md:flex-row bg-white md:bg-transparent md:w-auto w-full absolute md:relative top-16 md:top-0 left-0 md:left-auto shadow-lg md:shadow-none md:py-0 py-6 justify-center items-center space-y-4 md:space-y-0"
+        >
           <li>
-            <button class="px-4 py-2 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700">
+            <a href="#" class="text-gray-600 hover:text-gray-800">Products</a>
+          </li>
+          <li>
+            <a href="#" class="text-gray-600 hover:text-gray-800">Solutions</a>
+          </li>
+          <li>
+            <a href="#" class="text-gray-600 hover:text-gray-800">Resources</a>
+          </li>
+          <li>
+            <button
+              class="px-6 py-2 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700"
+            >
               Sign Up Free
             </button>
           </li>
         </ul>
-        
-        </div>
-      </nav>
-      
-      <main>
+      </div>
+    </nav>
 
-          <section class="bg-blue-50 py-12 text-center">
-              <h1 class="text-4xl font-bold text-gray-800">Effortless Video Conferencing</h1>
-              <p class="mt-4 text-lg font-medium text-gray-600">Join your team from anywhere with seamless video and collaboration tools.</p>
-              <button class="mt-6 px-6 py-3 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700">
-                  Get Started
-                </button>
-            </section>
-            <section class="bg-gray-100 py-12">
-                <div class="container mx-auto text-center">
-                    <h2 class="text-3xl font-bold text-gray-800">Why Choose Zoom?</h2>
-                    <div class="mt-8 grid gap-8 md:grid-cols-3">
-                        <div class="p-6 bg-white shadow-lg rounded-lg">
-                            <h3 class="text-xl font-bold text-gray-800">HD Video</h3>
-                            <p class="mt-4 text-gray-600">Experience crystal-clear video quality for every meeting.</p>
-                        </div>
-                        <div class="p-6 bg-white shadow-lg rounded-lg">
-                            <h3 class="text-xl font-bold text-gray-800">Screen Sharing</h3>
-                            <p class="mt-4 text-gray-600">Share your screen effortlessly for presentations.</p>
-                        </div>
-                        <div class="p-6 bg-white shadow-lg rounded-lg">
-                            <h3 class="text-xl font-bold text-gray-800">Team Collaboration</h3>
-                            <p class="mt-4 text-gray-600">Work together seamlessly with integrated tools.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            
-        </main>
-      
-      <script src="./script.js"></script>
-</body>
+    <main>
+      <section class="bg-blue-50 py-12 text-center">
+        <h1 class="text-4xl font-bold text-gray-800">
+          Effortless Video Conferencing
+        </h1>
+        <p class="mt-4 text-lg font-medium text-gray-600">
+          Join your team from anywhere with seamless video and collaboration
+          tools.
+        </p>
+        <button
+          class="mt-6 px-6 py-3 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700"
+        >
+          Get Started
+        </button>
+      </section>
+      <section class="bg-gray-100 py-12">
+        <div class="container mx-auto text-center">
+          <h2 class="text-3xl text-gray-800">Why Choose Zoom?</h2>
+          <div class="mt-8 grid gap-8 md:grid-cols-3">
+            <div class="p-6 bg-white shadow-lg rounded-lg">
+              <h3 class="text-xl font-bold text-gray-800">HD Video</h3>
+              <p class="mt-4 text-gray-600">
+                Experience crystal-clear video quality for every meeting.
+              </p>
+            </div>
+            <div class="p-6 bg-white shadow-lg rounded-lg">
+              <h3 class="text-xl font-bold text-gray-800">Screen Sharing</h3>
+              <p class="mt-4 text-gray-600">
+                Share your screen effortlessly for presentations.
+              </p>
+            </div>
+            <div class="p-6 bg-white shadow-lg rounded-lg">
+              <h3 class="text-xl font-bold text-gray-800">
+                Team Collaboration
+              </h3>
+              <p class="mt-4 text-gray-600">
+                Work together seamlessly with integrated tools.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <section class="py-12">
+      <div
+        class="container mx-auto flex flex-col md:flex-row items-center gap-8 px-4"
+      >
+        <div class="flex-1 flex justify-center">
+          <a
+            href="https://zoom.com/en/products/?amp_device_id=fedc4f8a-d19b-40c2-b88c-f0f6a3fb2ab3"
+            target="_blank"
+          >
+            <img
+              src="https://st1.zoom.us/homepage/publish/images/A564922F-6F6D-461C-8B55-C9056F515251.png"
+              alt="Wheel"
+              class="max-w-full h-auto"
+            />
+          </a>
+        </div>
+
+        <div class="flex-1 flex flex-col space-y-4">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-800">
+            The AI-first work platform for human connection
+          </h2>
+          <p class="text-gray-600 mb-4">
+            Work happy with AI Companion, reimagine teamwork, enhance customer
+            relationships, and enable seamless experiences with a choice of
+            third-party apps and integrations for best-in-class collaboration.
+          </p>
+
+          <p class="text-sm text-gray-500 mt-4">
+            *AI Companion is included at no additional cost with the paid
+            services in your Zoom user account and may not be available for all
+            regions and industry verticals. Some features not currently
+            available across all regions or plans and are subject to change.
+          </p>
+          <div>
+            <a
+              href="https://zoom.com/en/products/?amp_device_id=fedc4f8a-d19b-40c2-b88c-f0f6a3fb2ab3"
+              target="_blank"
+              class="bg-blue-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-blue-700 transition mt-4"
+            >
+              Discover the possibilities
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-blue-50 py-12">
+      <div
+        class="container mx-auto flex flex-col md:flex-row items-center gap-8"
+      >
+        <!-- Image Wrapper -->
+        <div class="flex-1 flex justify-center">
+          <div class="bg-gray-100 p-4 rounded-lg shadow-md">
+            <img
+              src="https://st1.zoom.us/homepage/publish/images/core_communication.png"
+              alt="Core Communication"
+              class="max-w-full h-auto rounded-lg"
+            />
+          </div>
+        </div>
+
+        <!-- Text Content -->
+        <div class="flex-1 flex flex-col space-y-4">
+          <img
+            src="https://st1.zoom.us/homepage/publish/images/product-zoom-workplace.svg"
+            alt="Zoom Workplace"
+            class="max-w-xs"
+          />
+          <p class="text-gray-700">
+            Make teamwork more meaningful across hybrid teams with modern
+            collaboration solutions.
+            <a
+              href="https://www.zoom.com/en/products/collaboration-tools/?amp_device_id=fedc4f8a-d19b-40c2-b88c-f0f6a3fb2ab3"
+              class="text-blue-600 font-bold hover:underline"
+            >
+              Learn more
+            </a>
+          </p>
+
+          <!-- Feature Links -->
+          <div class="grid grid-cols-2 gap-4">
+            <ul class="space-y-2">
+              <li class="flex items-center space-x-2">
+                <img
+                  src="https://st1.zoom.us/homepage/publish/images/product-meeting-icon.svg"
+                  alt="Meetings"
+                  class="h-6 w-6"
+                />
+                <a
+                  href="https://www.zoom.com/en/products/virtual-meetings/?amp_device_id=fedc4f8a-d19b-40c2-b88c-f0f6a3fb2ab3"
+                  target="_blank"
+                  class="text-gray-800 hover:text-blue-600"
+                >
+                  Meetings
+                </a>
+              </li>
+              <li class="flex items-center space-x-2">
+                <img
+                  src="https://st1.zoom.us/homepage/publish/images/product-chat-icon.svg"
+                  alt="Team Chat"
+                  class="h-6 w-6"
+                />
+                <a
+                  href="https://www.zoom.com/en/products/team-chat/?amp_device_id=fedc4f8a-d19b-40c2-b88c-f0f6a3fb2ab3"
+                  target="_blank"
+                  class="text-gray-800 hover:text-blue-600"
+                >
+                  Team Chat
+                </a>
+              </li>
+              <li class="flex items-center space-x-2">
+                <img
+                  src="https://st1.zoom.us/homepage/publish/images/product-phone-icon.svg"
+                  alt="Phone"
+                  class="h-6 w-6"
+                />
+                <a
+                  href="https://www.zoom.com/en/products/voip-phone/?amp_device_id=fedc4f8a-d19b-40c2-b88c-f0f6a3fb2ab3"
+                  target="_blank"
+                  class="text-gray-800 hover:text-blue-600"
+                >
+                  Phone
+                </a>
+              </li>
+            </ul>
+            <ul class="space-y-2">
+              <li class="flex items-center space-x-2">
+                <img
+                  src="https://st1.zoom.us/homepage/publish/images/product-productivity-icon.svg"
+                  alt="Productivity"
+                  class="h-6 w-6"
+                />
+                <a
+                  href="https://www.zoom.com/en/products/productivity/?amp_device_id=fedc4f8a-d19b-40c2-b88c-f0f6a3fb2ab3"
+                  target="_blank"
+                  class="text-gray-800 hover:text-blue-600"
+                >
+                  Productivity
+                </a>
+              </li>
+              <li class="flex items-center space-x-2">
+                <img
+                  src="https://st1.zoom.us/homepage/publish/images/product-small-workvivo-icon.svg"
+                  alt="Workvivo"
+                  class="h-6 w-6"
+                />
+                <a
+                  href="https://www.zoom.com/en/products/workvivo/?amp_device_id=fedc4f8a-d19b-40c2-b88c-f0f6a3fb2ab3"
+                  target="_blank"
+                  class="text-gray-800 hover:text-blue-600"
+                >
+                  Workvivo
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer
+      class="bg-blue-600 text-white py-8 flex justify-center items-center"
+    >
+      <div class="container py-4">
+        <div
+          class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left"
+        >
+          <div>
+            <h4 class="text-lg font-bold mb-4">Zoom</h4>
+            <p class="text-sm text-gray-200">
+              Seamless video conferencing and collaboration tools for modern
+              teams.
+            </p>
+          </div>
+          <div>
+            <h4 class="text-lg font-bold mb-4">Quick Links</h4>
+            <ul class="space-y-2">
+              <li>
+                <a href="#" class="text-gray-300 hover:text-white">Products</a>
+              </li>
+              <li>
+                <a href="#" class="text-gray-300 hover:text-white">Solutions</a>
+              </li>
+              <li>
+                <a href="#" class="text-gray-300 hover:text-white">Resources</a>
+              </li>
+              <li>
+                <a href="#" class="text-gray-300 hover:text-white">Support</a>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="text-lg font-bold mb-4">Follow Us</h4>
+            <div class="flex justify-center md:justify-start space-x-4">
+              <a href="#" class="text-gray-300 hover:text-white">
+                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.351C0 23.407.593 24 1.325 24h21.351c.732 0 1.324-.593 1.324-1.325V1.325C24 .593 23.407 0 22.675 0zM7.119 20.5H3.675V9h3.444v11.5zM5.396 7.5C4.03 7.5 3 6.47 3 5.104c0-1.367 1.03-2.396 2.396-2.396 1.367 0 2.396 1.03 2.396 2.396 0 1.366-1.029 2.396-2.396 2.396zM20.5 20.5h-3.444V15c0-1.313-.027-3-1.822-3-1.826 0-2.106 1.428-2.106 2.9v5.6h-3.444V9h3.31v1.563h.045c.461-.874 1.586-1.793 3.26-1.793 3.484 0 4.13 2.293 4.13 5.273v6.457z"
+                  />
+                </svg>
+              </a>
+              <a href="#" class="text-gray-300 hover:text-white px-2">
+                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M22.23 5.924c-.793.351-1.644.587-2.537.69.912-.547 1.615-1.415 1.946-2.448-.854.506-1.8.875-2.806 1.074C17.88 4.28 16.79 4 15.646 4c-2.242 0-4.063 1.823-4.063 4.062 0 .319.037.631.106.93C7.728 8.846 4.1 6.772 1.671 3.683c-.352.605-.553 1.31-.553 2.063 0 1.423.723 2.679 1.824 3.417-.671-.02-1.302-.206-1.855-.515v.052c0 1.987 1.415 3.646 3.29 4.023-.345.093-.71.144-1.085.144-.266 0-.525-.025-.779-.073.525 1.642 2.045 2.837 3.85 2.867-1.41 1.103-3.186 1.762-5.12 1.762-.333 0-.663-.02-.988-.056 1.82 1.166 3.977 1.847 6.304 1.847 7.548 0 11.676-6.255 11.676-11.676 0-.178-.004-.356-.012-.533.803-.58 1.5-1.305 2.052-2.135z"
+                  />
+                </svg>
+              </a>
+              <a href="#" class="text-gray-300 hover:text-white px-pl">
+                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M12 2.163c6.627 0 12 5.373 12 12 0 4.99-3.045 9.229-7.375 11.036-.54.098-.735-.235-.735-.52v-1.867c3.003.661 3.632-1.418 3.632-1.418.491-1.246 1.199-1.578 1.199-1.578.98-.667-.075-.653-.075-.653-1.082.076-1.65 1.125-1.65 1.125-.963 1.653-2.529 1.176-3.148.9-.098-.697-.377-1.175-.686-1.444 2.403-.276 4.93-1.206 4.93-5.379 0-1.188-.424-2.161-1.118-2.923.112-.275.486-1.38-.106-2.875 0 0-.914-.293-3 1.119-.866-.241-1.795-.362-2.718-.366-.923.004-1.852.125-2.719.366-2.085-1.412-3-1.119-3-1.119-.592 1.496-.218 2.6-.106 2.875-.694.762-1.118 1.735-1.118 2.923 0 4.186 2.535 5.099 4.946 5.369-.388.336-.735 1-.735 2.007v2.985c0 .287-.195.62-.735.52C3.045 21.392 0 17.154 0 12.163c0-6.627 5.373-12 12-12z"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-8 text-center text-gray-300 text-sm">
+          <p>&copy; 2024 Zoom. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="./script.js"></script>
+  </body>
 </html>
