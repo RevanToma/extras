@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./output.css" rel="stylesheet" />
+    <title>Document</title>
+</head>
+<body>
+    <nav class="bg-white shadow-md">
+        <div class="container mx-auto px-2 py-4 flex justify-between items-center">
+          <a href="#" class="text-4xl font-bold text-blue-600">Zoom</a>
+      
+          <button
+            id="menu-toggle"
+            class="block md:hidden text-gray-600 hover:text-gray-800 focus:outline-none"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+            </svg>
+          </button>
+      
+          <ul
+            id="menu"
+            class="px-2 hidden md:flex md:space-x-4 flex-col md:flex-row 
+            bg-white md:bg-transparent md:w-auto w-full absolute md:relative top-16 
+            md:top-0 left-0 md:left-auto shadow-lg md:shadow-none md:py-0 py-6
+            justify-center items-center space-y-4 md:space-y-0 "
+    >
+    
+          <li><a href="#" class="text-gray-600 hover:text-gray-800 ">Products</a></li>
+          <li><a href="#" class="text-gray-600 hover:text-gray-800">Solutions</a></li>
+          <li><a href="#" class="text-gray-600 hover:text-gray-800">Resources</a></li>
+          <li>
+            <button class="px-4 py-2 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700">
+              Sign Up Free
+            </button>
+          </li>
+        </ul>
+        
+        </div>
+      </nav>
+      
+      <main>
+
+          <section class="bg-blue-50 py-12 text-center">
+              <h1 class="text-4xl font-bold text-gray-800">Effortless Video Conferencing</h1>
+              <p class="mt-4 text-lg font-medium text-gray-600">Join your team from anywhere with seamless video and collaboration tools.</p>
+              <button class="mt-6 px-6 py-3 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700">
+                  Get Started
+                </button>
+            </section>
+            <section class="bg-gray-100 py-12">
+                <div class="container mx-auto text-center">
+                    <h2 class="text-3xl font-bold text-gray-800">Why Choose Zoom?</h2>
+                    <div class="mt-8 grid gap-8 md:grid-cols-3">
+                        <div class="p-6 bg-white shadow-lg rounded-lg">
+                            <h3 class="text-xl font-bold text-gray-800">HD Video</h3>
+                            <p class="mt-4 text-gray-600">Experience crystal-clear video quality for every meeting.</p>
+                        </div>
+                        <div class="p-6 bg-white shadow-lg rounded-lg">
+                            <h3 class="text-xl font-bold text-gray-800">Screen Sharing</h3>
+                            <p class="mt-4 text-gray-600">Share your screen effortlessly for presentations.</p>
+                        </div>
+                        <div class="p-6 bg-white shadow-lg rounded-lg">
+                            <h3 class="text-xl font-bold text-gray-800">Team Collaboration</h3>
+                            <p class="mt-4 text-gray-600">Work together seamlessly with integrated tools.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+        </main>
+      
+      <script src="./script.js"></script>
+</body>
+</html>
