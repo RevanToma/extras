@@ -10,6 +10,7 @@
     <h1>Tillgängliga Webbkomponenter med WAI-ARIA</h1>
 
     <h2>1. Tillgängligt Modalfönster</h2>
+
     <button id="openModalBtn" aria-haspopup="dialog">Öppna modalfönster</button>
     <div
       id="accessibleModal"
@@ -24,7 +25,9 @@
     <div id="overlay" class="overlay" hidden></div>
 
     <h2>2. Tillgängligt Modalfönster med &lt;dialog&gt;</h2>
+
     <button id="openDialogBtn" role="button">Visa dialog</button>
+
     <dialog id="accessibleDialog">
       <h2>Exempel på tillgängligt modalfönster med &lt;dialog&gt;</h2>
       <p>Innehållet i modalfönstret.</p>
@@ -32,9 +35,11 @@
     </dialog>
 
     <h2>3. Tillgänglig Hamburgarmeny</h2>
+
     <button id="menuButton" aria-expanded="false" aria-controls="menuContent">
       <img id="burger-btn" src="../burger-bar.png" alt="Hamburger menu" />
     </button>
+
     <nav id="menuContent" aria-hidden="true">
       <ul>
         <li><a href="#">Hem</a></li>

@@ -2,24 +2,12 @@ const modal = document.getElementById('accessibleModal'),
   openModalBtn = document.getElementById('openModalBtn'),
   closeModalBtn = document.getElementById('closeModalBtn'),
   overlay = document.getElementById('overlay'),
-  burgerBtn = document.getElementById('burger-btn');
-
-openModalBtn.addEventListener('click', () => {
-  modal.classList.add('active');
-  overlay.hidden = false;
-  modal.setAttribute('aria-hidden', 'false');
-  closeModalBtn.focus();
-});
-
-closeModalBtn.addEventListener('click', closeAccessibleModal);
-overlay.addEventListener('click', closeAccessibleModal);
-
-function closeAccessibleModal() {
-  modal.classList.remove('active');
-  overlay.hidden = true;
-  modal.setAttribute('aria-hidden', 'true');
-  openModalBtn.focus();
-}
+  burgerBtn = document.getElementById('burger-btn'),
+  dialog = document.getElementById('accessibleDialog'),
+  openDialogBtn = document.getElementById('openDialogBtn'),
+  closeDialogBtn = document.getElementById('closeDialogBtn'),
+  menuButton = document.getElementById('menuButton'),
+  menuContent = document.getElementById('menuContent');
 
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && modal.classList.contains('active')) {
@@ -27,9 +15,22 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-const dialog = document.getElementById('accessibleDialog'),
-  openDialogBtn = document.getElementById('openDialogBtn'),
-  closeDialogBtn = document.getElementById('closeDialogBtn');
+const closeAccessibleModal = () => {
+  modal.classList.remove('active');
+  overlay.hidden = true;
+  modal.setAttribute('aria-hidden', 'true');
+  openModalBtn.focus();
+};
+
+closeModalBtn.addEventListener('click', closeAccessibleModal);
+overlay.addEventListener('click', closeAccessibleModal);
+
+openModalBtn.addEventListener('click', () => {
+  modal.classList.add('active');
+  overlay.hidden = false;
+  modal.setAttribute('aria-hidden', 'false');
+  closeModalBtn.focus();
+});
 
 openDialogBtn.addEventListener('click', () => {
   dialog.showModal();
@@ -47,9 +48,6 @@ document.addEventListener('keydown', (e) => {
     openDialogBtn.focus();
   }
 });
-
-const menuButton = document.getElementById('menuButton'),
-  menuContent = document.getElementById('menuContent');
 
 menuButton.addEventListener('click', () => {
   burgerBtn.style.rotate = '90deg';
