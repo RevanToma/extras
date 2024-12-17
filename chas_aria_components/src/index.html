@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="sv">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Tillgängliga Webbkomponenter</title>
+  </head>
+  <body>
+    <h1>Tillgängliga Webbkomponenter med WAI-ARIA</h1>
+
+    <h2>1. Tillgängligt Modalfönster</h2>
+    <button id="openModalBtn" aria-haspopup="dialog">Öppna modalfönster</button>
+    <div
+      id="accessibleModal"
+      role="dialog"
+      aria-labelledby="modalTitle"
+      aria-hidden="true"
+    >
+      <h2 id="modalTitle">Exempel på modalfönster</h2>
+      <p>Här är lite text i modalfönstret.</p>
+      <button id="closeModalBtn">Stäng</button>
+    </div>
+    <div id="overlay" class="overlay" hidden></div>
+
+    <h2>2. Tillgängligt Modalfönster med &lt;dialog&gt;</h2>
+    <button id="openDialogBtn" role="button">Visa dialog</button>
+    <dialog id="accessibleDialog">
+      <h2>Exempel på tillgängligt modalfönster med &lt;dialog&gt;</h2>
+      <p>Innehållet i modalfönstret.</p>
+      <button id="closeDialogBtn">Stäng</button>
+    </dialog>
+
+    <h2>3. Tillgänglig Hamburgarmeny</h2>
+    <button id="menuButton" aria-expanded="false" aria-controls="menuContent">
+      <img id="burger-btn" src="../burger-bar.png" alt="Hamburger menu" />
+    </button>
+    <nav id="menuContent" aria-hidden="true">
+      <ul>
+        <li><a href="#">Hem</a></li>
+        <li><a href="#">Om oss</a></li>
+        <li><a href="#">Tjänster</a></li>
+        <li><a href="#">Kontakt</a></li>
+      </ul>
+    </nav>
+    <script src="./script.js"></script>
+  </body>
+</html>
