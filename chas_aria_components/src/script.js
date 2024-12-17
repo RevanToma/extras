@@ -34,18 +34,15 @@ openModalBtn.addEventListener('click', () => {
 
 openDialogBtn.addEventListener('click', () => {
   dialog.showModal();
-  closeDialogBtn.focus();
 });
 
 closeDialogBtn.addEventListener('click', () => {
   dialog.close();
-  openDialogBtn.focus();
 });
 
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && dialog.open) {
     dialog.close();
-    openDialogBtn.focus();
   }
 });
 
