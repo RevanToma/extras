@@ -1,7 +1,6 @@
-const menuToggle = document.getElementById("menu-toggle"),
-   menu = document.getElementById("menu")
+const menuToggle = document.getElementById('menu-toggle'),
+  menu = document.getElementById('menu');
 
-  menuToggle.addEventListener("click", () => {
-    menu.classList.toggle("hidden");
-  });
-
+menuToggle.addEventListener('click', () => {
+  menu.classList.toggle('hidden');
+});
