@@ -1,0 +1,55 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 2em;
+}
+
+#accessibleModal {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 1.5em;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  z-index: 100;
+}
+
+#accessibleModal.active,
+dialog[open] {
+  display: block;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+nav {
+  display: none;
+}
+nav.open {
+  display: block;
+  background: #eee;
+  padding: 1em;
+}
+
+#burger-btn {
+  width: 2rem;
+  aspect-ratio: 1;
+}
+
+#menuButton {
+  margin-bottom: 1rem;
+}
+ul li {
+  padding: 0.2rem 0;
+}
