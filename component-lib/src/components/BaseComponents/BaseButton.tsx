@@ -15,9 +15,9 @@ const BaseButton: React.FC<BaseButtonProps> = ({
   ...rest
 }) => {
   const sizes = {
-    small: '8px 16px',
-    medium: '12px 24px',
-    large: '16px 32px',
+    small: '0.5rem 1rem',
+    medium: '0.8rem 1.2rem',
+    large: '1rem 2rem',
   };
 
   return (

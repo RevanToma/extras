@@ -1,6 +1,4 @@
 import { Badge, BadgeProps, BadgeSizes } from 'flowbite-react';
-
-// make the color size and icon a must
 interface BaseBadgeProps extends BadgeProps {
   color: BadgeProps['color'];
   size: BadgeProps['size'];
