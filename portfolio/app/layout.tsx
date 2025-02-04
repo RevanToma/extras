@@ -6,7 +6,10 @@ import ClientProvider from '@/components/ClientProvider';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Portfolio',
+  title: {
+    template: '%s | Portfolio',
+    default: 'Portfolio',
+  },
 };
 
 export default function RootLayout({
@@ -16,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en' suppressHydrationWarning>
-      <body className={`${inter.className}  antialiased bg-black`}>
+      <body className={`${inter.className}  antialiased bg-[#1E1E1E]`}>
         <ClientProvider>{children}</ClientProvider>
       </body>
     </html>

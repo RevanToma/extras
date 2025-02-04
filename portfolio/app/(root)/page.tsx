@@ -3,6 +3,13 @@ import { PortfolioContext } from '@/context/PortfolioContext';
 import { JSX, useContext } from 'react';
 import { SiMongodb, SiExpress, SiReact, SiNodedotjs } from 'react-icons/si';
 import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 
 export default function Home() {
   const portfolioContext = useContext(PortfolioContext);
@@ -26,7 +33,7 @@ export default function Home() {
         </h1>
         <p className='text-lg mt-4'>I build things for the web.</p>
       </section>
-      <section className='mt-20'>
+      <section className='mt-10'>
         <h2 className='text-3xl font-semibold text-center'>My Tech Stack</h2>
         <div className='flex flex-wrap justify-center gap-6 mt-8 group'>
           {techSkills.length > 0 ? (
@@ -49,44 +56,49 @@ export default function Home() {
       <section className='mt-20'>
         <h2 className='text-3xl font-semibold text-center'>Projects</h2>
         <p className='text-center text-gray-400'>Things I've built so far</p>
+
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8'>
-          {projects.map((project, index) => (
-            <div key={index} className='bg-gray-900 p-6 rounded-lg shadow-lg'>
-              <h3 className='text-xl font-bold'>{project.title}</h3>
-              <p className='text-gray-400 mt-2'>{project.description}</p>
-              <div className='flex gap-2 mt-4'>
-                {project.techStack.map((tech, i) => (
-                  <span
-                    key={i}
-                    className='bg-gray-700 px-2 py-1 rounded text-sm'
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-              <div className='flex justify-between mt-4'>
-                {project.liveLink && (
-                  <a
-                    href={project.liveLink}
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    className='text-blue-400 hover:underline flex items-center gap-1'
-                  >
-                    Live Preview <FaExternalLinkAlt />
-                  </a>
-                )}
-                {project.repoLink && (
-                  <a
-                    href={project.repoLink}
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    className='text-gray-400 hover:underline flex items-center gap-1'
-                  >
-                    View Code <FaGithub />
-                  </a>
-                )}
-              </div>
-            </div>
+          {projects.map((project, idx) => (
+            <Card key={project.id + idx} className='bg-gray-900 text-white'>
+              <CardHeader>
+                <CardTitle>{project.title}</CardTitle>
+                <CardDescription>{project.description}</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className='flex gap-2 mt-2'>
+                  {project.techStack.map((tech) => (
+                    <span
+                      key={tech}
+                      className='bg-gray-700 px-2 py-1 rounded text-sm'
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+                <div className='flex justify-between mt-4'>
+                  {project.liveLink && (
+                    <a
+                      href={project.liveLink}
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      className='text-blue-400 hover:underline flex items-center gap-1'
+                    >
+                      Live Preview <FaExternalLinkAlt />
+                    </a>
+                  )}
+                  {project.repoLink && (
+                    <a
+                      href={project.repoLink}
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      className='text-gray-400 hover:underline flex items-center gap-1'
+                    >
+                      View Code <FaGithub />
+                    </a>
+                  )}
+                </div>
+              </CardContent>
+            </Card>
           ))}
         </div>
       </section>
@@ -94,7 +106,7 @@ export default function Home() {
       <section className='mt-20 text-center'>
         <h2 className='text-3xl font-semibold'>Contact</h2>
         <p className='text-gray-400 mt-2'>Feel free to reach out!</p>
-        <p className='mt-4'>📧 your.email@example.com</p>
+        <p className='mt-4'>📧 info@example.com</p>
       </section>
     </main>
   );
