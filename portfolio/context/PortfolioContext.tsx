@@ -1,50 +1,45 @@
-"use client";
-import { createContext, useState, useEffect, ReactNode } from "react";
+'use client';
+import { dummyProjects } from '@/data';
+import { PortfolioContextType, Project } from '@/types';
+import { createContext, useState, useEffect, ReactNode } from 'react';
 
-type Project = {
-  id: string;
-  title: string;
-  description: string;
-  techStack: string[];
-  liveLink?: string;
-  repoLink?: string;
-};
+export const PortfolioContext = createContext<PortfolioContextType | null>(
+  null
+);
 
-interface PortfolioContextType {
-  projects: Project[];
-  techSkills: string[];
-  addProject: (project: Project) => void;
-  editProject: (index: number, updatedProject: Project) => void;
-  deleteProject: (index: number) => void;
-  addTechSkill: (skill: string) => void;
-  removeTechSkill: (skill: string) => void;
-}
-
-export const PortfolioContext = createContext<PortfolioContextType | null>(null);
-
-const loadFromLocalStorage = <T,>(key: string, defaultValue: T): T => {
-  if (typeof window !== "undefined") {
-    const storedValue = localStorage.getItem(key);
-    return storedValue ? JSON.parse(storedValue) : defaultValue;
-  }
-  return defaultValue;
-};
-
-interface PortfolioProviderProps {
-  children: ReactNode;
-}
-
-export function PortfolioProvider({ children }: PortfolioProviderProps) {
-  const [projects, setProjects] = useState<Project[]>(() => loadFromLocalStorage("projects", [])),
-   [techSkills, setTechSkills] = useState<string[]>(() => loadFromLocalStorage("techSkills", []))
+export function PortfolioProvider({ children }: { children: ReactNode }) {
+  const [projects, setProjects] = useState<Project[]>([]),
+    [techSkills, setTechSkills] = useState<string[]>([]),
+    [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    localStorage.setItem("projects", JSON.stringify(projects));
-  }, [projects]);
+    if (typeof window !== 'undefined') {
+      setProjects(
+        JSON.parse(
+          localStorage.getItem('projects') || JSON.stringify(dummyProjects)
+        )
+      );
+      setTechSkills(
+        JSON.parse(
+          localStorage.getItem('techSkills') ||
+            JSON.stringify(['MongoDB', 'Express', 'React', 'NodeJS'])
+        )
+      );
+      setIsMounted(true);
+    }
+  }, []);
 
   useEffect(() => {
-    localStorage.setItem("techSkills", JSON.stringify(techSkills));
-  }, [techSkills]);
+    if (isMounted) {
+      localStorage.setItem('projects', JSON.stringify(projects));
+    }
+  }, [projects, isMounted]);
+
+  useEffect(() => {
+    if (isMounted) {
+      localStorage.setItem('techSkills', JSON.stringify(techSkills));
+    }
+  }, [techSkills, isMounted]);
 
   const addProject = (project: Project) => setProjects([...projects, project]);
 
@@ -63,6 +58,8 @@ export function PortfolioProvider({ children }: PortfolioProviderProps) {
   const removeTechSkill = (skill: string) => {
     setTechSkills(techSkills.filter((s) => s !== skill));
   };
+
+  if (!isMounted) return null;
 
   return (
     <PortfolioContext.Provider
