@@ -4,7 +4,7 @@ import { usePlayerContext } from '../pages/api/PlayerContext'; // Importera Play
 import { useEffect } from 'react';
 import { useRouter } from 'next/router'; // Importera useRouter
 import { Button } from './ui/button';
-
+import MotionDiv from './motion-div';
 export default function Results() {
   const { questions, resetGame, score, userAnswers } = useTrivia(); // Hämta userAnswers från TriviaContext
   const { playerName, addHighScore } = usePlayerContext(); // Hämta spelardata från PlayerContext
@@ -24,7 +24,7 @@ export default function Results() {
   };
 
   return (
-    <div className='max-w-3xl mx-auto m-10 p-20 bg-gray-100 rounded-lg shadow-lg'>
+    <MotionDiv className='max-w-3xl mx-auto p-2 border rounded-lg text-center'>
       <h2 className='text-2xl font-semibold text-center mb-4 pb-4'>
         Quiz Results
       </h2>
@@ -56,6 +56,6 @@ export default function Results() {
       <div className='mt-10 text-center'>
         <Button onClick={handleRestartQuiz}>Restart Quiz</Button>
       </div>
-    </div>
+    </MotionDiv>
   );
 }
