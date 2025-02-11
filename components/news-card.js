@@ -26,7 +26,7 @@ export default function NewsCard({ article }) {
   );
 
   return (
-    <Card className='2 border rounded-lg shadow flex flex-col gap-2  p-2'>
+    <Card className='2 border rounded-lg shadow flex flex-col gap-2 p-2 '>
       <CardHeader className='h-[180px] p-0'>
         <Image
           src={imgSrc}

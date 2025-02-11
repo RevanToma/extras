@@ -18,8 +18,9 @@ import {
   SheetTrigger,
 } from './ui/sheet';
 import { EllipsisVertical } from 'lucide-react';
-import { useEffect, useState } from 'react';
 import ChasNewsIcon from './chas-news-icon';
+import Search from './search';
+import ProgressScroll from './progress-scroll';
 
 const categories = [
   'business',
@@ -32,30 +33,12 @@ const categories = [
 
 export default function Navbar() {
   const pathname = usePathname();
-  const [scrollProgress, setScrollProgress] = useState(0);
-
-  useEffect(() => {
-    const updateScrollProgress = () => {
-      const scrollY = window.scrollY,
-        docHeight =
-          document.documentElement.scrollHeight -
-          document.documentElement.clientHeight;
-
-      setScrollProgress((scrollY / docHeight) * 100);
-    };
-    window.addEventListener('scroll', updateScrollProgress);
-    return () => window.removeEventListener('scroll', updateScrollProgress);
-  }, []);
 
   return (
-    <header className='sticky top-0 z-50 '>
-      <div
-        className='md:h-1 h-2 absolute bg-gradient-to-r from-blue-500 to-purple-500
-        transition-all animate-pulse shadow-md backdrop-blur-sm '
-        style={{ width: `${scrollProgress}%` }}
-      ></div>
+    <header className='sticky top-0 z-50 opacity-95'>
+      <ProgressScroll />
 
-      <Menubar className='p-5w-full flex justify-between items-center px-6 py-4 h-fit '>
+      <Menubar className='p-4 w-full flex justify-between items-center  py-4 h-fit '>
         <div className='flex items-center gap-4'>
           {/* <Image
             src='/newlogo.webp'
@@ -65,10 +48,11 @@ export default function Navbar() {
           /> */}
           <ChasNewsIcon size={60} />
 
-          <Link href='/' className='text-2xl font-bold'>
+          <Link href='/' className='hidden md:flex text-2xl font-bold '>
             Chas News
           </Link>
         </div>
+        <Search />
         <MenubarMenu>
           <div className='hidden lg:flex items-center pr-10 gap-3'>
             <MenubarTrigger

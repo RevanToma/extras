@@ -1,31 +1,30 @@
 import path from 'path';
 import fs from 'fs';
+
 const CACHE_DIR = path.join(process.cwd(), '.cache');
-const CACHE_FILE = (category) => path.join(CACHE_DIR, `${category}.json`);
+const CACHE_FILE = (query) => path.join(CACHE_DIR, `search-${query}.json`);
 
 export async function GET(req) {
   const { searchParams } = new URL(req.url);
-  const category = searchParams.get('category') || 'top';
   const query = searchParams.get('q');
+
+  if (!query) {
+    return new Response(JSON.stringify({ error: 'Search query is missing' }), {
+      status: 400,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
 
   if (!fs.existsSync(CACHE_DIR)) {
     fs.mkdirSync(CACHE_DIR);
   }
 
-  const cacheFilePath = CACHE_FILE(category);
+  const cacheFilePath = CACHE_FILE(query);
 
   if (fs.existsSync(cacheFilePath)) {
+    console.log(`📂 Serving cached search results for query: ${query}`);
     const cachedData = fs.readFileSync(cacheFilePath, 'utf-8');
-    const articles = JSON.parse(cachedData);
-
-    // ✅ Filter articles based on search query
-    const filteredArticles = query
-      ? articles.filter((article) =>
-          article.title.toLowerCase().includes(query.toLowerCase())
-        )
-      : articles;
-
-    return new Response(JSON.stringify(filteredArticles), {
+    return new Response(cachedData, {
       status: 200,
       headers: { 'Content-Type': 'application/json' },
     });
@@ -43,9 +42,7 @@ export async function GET(req) {
 
   try {
     const response = await fetch(
-      `${apiUrl}?apikey=${apiKey}&category=${category}&language=en&q=${
-        query || ''
-      }`
+      `${apiUrl}?apikey=${apiKey}&language=en&q=${encodeURIComponent(query)}`
     );
 
     if (!response.ok) {
