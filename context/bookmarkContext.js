@@ -12,6 +12,9 @@ export const BookmarkProvider = ({ children }) => {
   }, []);
 
   const addBookmark = (article) => {
+    if (bookmarks.some((b) => b.article_id === article.article_id)) {
+      return;
+    }
     const updatedBookmarks = [...bookmarks, article];
     setBookmarks(updatedBookmarks);
     localStorage.setItem('bookmarks', JSON.stringify(updatedBookmarks));

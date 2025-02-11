@@ -26,7 +26,7 @@ export default function Navbar() {
 
   console.log('pathname', pathname);
   return (
-    <Menubar className='flex justify-between items-center px-6 py-2 h-fit sticky top-0'>
+    <Menubar className='flex justify-between items-center px-6 py-2 h-fit sticky top-0 z-10'>
       <div className='flex items-center gap-4'>
         <Image
           src='/newlogo.webp'

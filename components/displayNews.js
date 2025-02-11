@@ -5,6 +5,7 @@ import { fetchNews } from '@/lib/fetchNews';
 import NewsCard from './news-card';
 import LoadingPage from '@/app/loading';
 import Link from 'next/link';
+import AsideNews from './aside-news';
 
 export default function Home() {
   const [news, setNews] = useState([]);
@@ -39,24 +40,7 @@ export default function Home() {
         )}
       </section>
 
-      <aside className='border-l pl-4'>
-        <h1 className='text-3xl font-bold mb-4'>Recent News</h1>
-
-        <ul className='space-y-3'>
-          {news.slice(0, 6).map((article) => (
-            <li key={article.article_id} className='border-b pb-2'>
-              <Link
-                href={article.link}
-                target='_blank'
-                className='text-blue-500 hover:underline block'
-              >
-                {article.title}
-              </Link>
-              <p className='text-xs text-gray-500'>{article.pubDate}</p>
-            </li>
-          ))}
-        </ul>
-      </aside>
+      <AsideNews news={news} />
     </main>
   );
 }

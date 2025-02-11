@@ -6,6 +6,7 @@ import { fetchNews } from '@/lib/fetchNews';
 import NewsCard from '@/components/news-card';
 import LoadingPage from '@/app/loading';
 import Link from 'next/link';
+import AsideNews from '@/components/aside-news';
 
 const CategoryDetailsPage = () => {
   const { id: category } = useParams();
@@ -47,25 +48,7 @@ const CategoryDetailsPage = () => {
         )}
       </section>
 
-      <aside className='border-l pl-4'>
-        <h2 className='text-xl font-semibold mb-4'>
-          Recent {category.charAt(0).toUpperCase() + category.slice(1)} News
-        </h2>
-        <ul className='space-y-3'>
-          {news.slice(0, 6).map((article) => (
-            <li key={article.article_id} className='border-b pb-2'>
-              <Link
-                href={article.link}
-                target='_blank'
-                className='text-blue-500 hover:underline block'
-              >
-                {article.title}
-              </Link>
-              <p className='text-xs text-gray-500'>{article.pubDate}</p>
-            </li>
-          ))}
-        </ul>
-      </aside>
+      <AsideNews news={news} category={category} />
     </main>
   );
 };
