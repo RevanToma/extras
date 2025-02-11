@@ -15,18 +15,15 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Fragment, useEffect, useState } from 'react';
 import { Button } from './ui/button';
-import LoadingSkeleton from '@/app/loading';
 
 const ArticelCarousel = () => {
   const [articles, setArticles] = useState([]);
   const { bookmarks, addBookmark, removeBookmark } = useBookmarks();
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const loadArticles = async () => {
       const news = await fetchNews('politics');
       setArticles(news.slice(0, 10));
-      setLoading(false);
     };
     loadArticles();
   }, []);
@@ -59,7 +56,7 @@ const ArticelCarousel = () => {
                           width={200}
                           height={200}
                           alt='Article'
-                          className='w-full h-28 object-cover'
+                          className='w-full h-28 object-cover '
                         />
                         <div className='p-4 flex flex-col'>
                           <h3 className='text-lg font-semibold line-clamp-2 h-[50px]'>

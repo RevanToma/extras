@@ -12,27 +12,29 @@ import { Button } from './ui/button';
 import Link from 'next/link';
 import Image from 'next/image';
 import { categoryFallbacks } from '@/lib/constants';
+import { useState } from 'react';
 
 export default function NewsCard({ article }) {
   const { bookmarks, addBookmark, removeBookmark } = useBookmarks();
   const isBookmarked = bookmarks.some(
     (b) => b.article_id === article.article_id
   );
-
-  const imageUrl =
+  const [imgSrc, setImgSrc] = useState(
     article.image_url ||
-    categoryFallbacks[article.category?.[0]] ||
-    categoryFallbacks.default;
+      categoryFallbacks[article.category?.[0]] ||
+      categoryFallbacks.default
+  );
 
   return (
     <Card className='2 border rounded-lg shadow flex flex-col gap-2  p-2'>
       <CardHeader className='h-[180px] p-0'>
         <Image
-          src={imageUrl}
+          src={imgSrc}
           width={400}
           height={180}
           alt='News'
-          className='w-full h-full object-cover rounded-md'
+          className='w-full h-full object-cover rounded-md '
+          onError={() => setImgSrc(categoryFallbacks.default)}
         />
       </CardHeader>
       <div className='flex-grow'>
