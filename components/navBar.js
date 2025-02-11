@@ -10,7 +10,6 @@ import {
 } from './ui/menubar';
 import { ModeToggle } from './toggle-mode';
 import { usePathname } from 'next/navigation';
-import { cn } from '@/lib/utils';
 import {
   Sheet,
   SheetContent,
@@ -33,7 +32,7 @@ export default function Navbar() {
   const pathname = usePathname();
 
   return (
-    <Menubar className='p-5 w-full flex justify-between items-center px-6 py-2 h-fit sticky top-0 z-10'>
+    <Menubar className='p-5w-full flex justify-between items-center px-6 py-4 h-fit sticky top-0 z-10'>
       <div className='flex items-center gap-4'>
         <Image
           src='/newlogo.webp'
@@ -70,12 +69,14 @@ export default function Navbar() {
               </MenubarItem>
             ))}
           </MenubarContent>
+
           <Link
             href='/bookmarks'
             className={`${pathname.includes('/bookmarks') ? 'border-b-2' : ''}`}
           >
             Bookmarks
           </Link>
+
           <ModeToggle />
         </div>
         <nav className='md:hidden'>

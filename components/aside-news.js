@@ -13,10 +13,10 @@ const AsideNews = ({ news, category }) => {
       )}
 
       <ul className='space-y-3'>
-        {news.slice(0, 6).map((article) => (
+        {news.slice(0, 7).map((article) => (
           <li key={article.article_id} className='border-b p-1 '>
-            <Button asChild variant='link'>
-              <Link href={article.link} target='_blank' className='w-fit px-0'>
+            <Button asChild variant='link' className='px-0'>
+              <Link href={article.link} target='_blank'>
                 {article.title}
               </Link>
             </Button>
