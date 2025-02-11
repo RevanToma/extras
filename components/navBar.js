@@ -19,6 +19,7 @@ import {
 } from './ui/sheet';
 import { EllipsisVertical } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import ChasNewsIcon from './chas-news-icon';
 
 const categories = [
   'business',
@@ -56,12 +57,14 @@ export default function Navbar() {
 
       <Menubar className='p-5w-full flex justify-between items-center px-6 py-4 h-fit '>
         <div className='flex items-center gap-4'>
-          <Image
+          {/* <Image
             src='/newlogo.webp'
             alt='Chas News Logo'
             width={40}
             height={40}
-          />
+          /> */}
+          <ChasNewsIcon size={60} />
+
           <Link href='/' className='text-2xl font-bold'>
             Chas News
           </Link>
