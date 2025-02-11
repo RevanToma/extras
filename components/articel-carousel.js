@@ -15,15 +15,18 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Fragment, useEffect, useState } from 'react';
 import { Button } from './ui/button';
+import LoadingSkeleton from '@/app/loading';
 
 const ArticelCarousel = () => {
   const [articles, setArticles] = useState([]);
   const { bookmarks, addBookmark, removeBookmark } = useBookmarks();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const loadArticles = async () => {
       const news = await fetchNews('politics');
       setArticles(news.slice(0, 10));
+      setLoading(false);
     };
     loadArticles();
   }, []);

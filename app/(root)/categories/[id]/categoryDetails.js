@@ -4,9 +4,8 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import { fetchNews } from '@/lib/fetchNews';
 import NewsCard from '@/components/news-card';
-import LoadingPage from '@/app/loading';
-import Link from 'next/link';
 import AsideNews from '@/components/aside-news';
+import LoadingSkeleton from '@/app/loading';
 
 const CategoryDetailsPage = () => {
   const { id: category } = useParams();
@@ -30,7 +29,7 @@ const CategoryDetailsPage = () => {
     getNews();
   }, [category]);
 
-  if (loading) return <LoadingPage />;
+  if (loading) return <LoadingSkeleton />;
 
   return (
     <main className='p-6 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6'>

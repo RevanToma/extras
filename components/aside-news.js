@@ -3,7 +3,7 @@ import { Button } from './ui/button';
 
 const AsideNews = ({ news, category }) => {
   return (
-    <aside className=' lg:border-l pl-2 sticky top-20 lg:h-[calc(100vh-10rem)] overflow-hidden '>
+    <aside className=' lg:border-l pl-2 sticky top-20 lg:h-[calc(100vh-10rem)] overflow-hidden w-full'>
       {category ? (
         <h2 className='text-xl font-semibold mb-4'>
           Recent {category.charAt(0).toUpperCase() + category.slice(1)} News

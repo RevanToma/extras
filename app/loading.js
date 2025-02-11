@@ -1,19 +1,16 @@
-import Loader from '../assets/loader.gif';
-import Image from 'next/image';
+import SkeletonCard from '@/components/skeleton-card';
+import { cn } from '@/lib/utils';
 
-const LoadingPage = () => {
+const LoadingSkeleton = ({ className }) => {
   return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: '1rem',
-      }}
-    >
-      <Image src={Loader} alt='Loading...' width={150} height={150} />
-    </div>
+    <main className='max-w-7xl mx-auto p-6'>
+      <div className={cn('grid grid-cols-1 md:grid-cols-2 gap-6', className)}>
+        {Array.from({ length: 6 }).map((_, index) => (
+          <SkeletonCard key={index} />
+        ))}
+      </div>
+    </main>
   );
 };
 
-export default LoadingPage;
+export default LoadingSkeleton;
