@@ -25,8 +25,8 @@ export default function NewsCard({ article }) {
     categoryFallbacks.default;
 
   return (
-    <Card className='2 border rounded-lg shadow flex flex-col gap-2 h-[450px] p-2'>
-      <CardHeader className='h-[180px]'>
+    <Card className='2 border rounded-lg shadow flex flex-col gap-2  p-2'>
+      <CardHeader className='h-[180px] p-0'>
         <Image
           src={imageUrl}
           width={400}
@@ -37,13 +37,13 @@ export default function NewsCard({ article }) {
       </CardHeader>
       <div className='flex-grow'>
         <CardTitle className='text-lg line-clamp-2'>{article.title}</CardTitle>
-        <CardDescription className='text-sm mt-3 line-clamp-5 '>
+        <CardDescription className='text-sm mt-3 line-clamp-2 '>
           {!article.description
             ? 'No description available'
             : article.description}
         </CardDescription>
       </div>
-      <CardFooter className='flex justify-between p-2'>
+      <CardFooter className='flex justify-between p-1'>
         <Button asChild variant='outline'>
           <Link href={article.link} target='_blank'>
             Read more

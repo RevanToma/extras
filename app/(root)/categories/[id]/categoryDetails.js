@@ -34,7 +34,6 @@ const CategoryDetailsPage = () => {
 
   return (
     <main className='p-6 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6'>
-      {/* Left Column: Main Category News */}
       <section className='lg:col-span-2'>
         <h1 className='text-3xl font-bold mb-4 capitalize'>{category} News</h1>
         {news.length === 0 ? (

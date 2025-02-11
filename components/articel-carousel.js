@@ -39,7 +39,7 @@ const ArticelCarousel = () => {
             );
             return (
               <Fragment key={article.article_id}>
-                <CarouselItem className='basis-1/3'>
+                <CarouselItem className='sm:basis-1/2 md:basis-1/3 lg:basis-1/4'>
                   <Card className='flex flex-col p-2 h-[280px]'>
                     <CardContent className='p-0 flex flex-col h-full justify-between'>
                       <Link
@@ -85,8 +85,8 @@ const ArticelCarousel = () => {
             );
           })}
         </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
+        <CarouselPrevious className='hidden sm:flex' />
+        <CarouselNext className='hidden sm:flex' />
       </Carousel>
     </section>
   );
