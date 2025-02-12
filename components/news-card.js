@@ -55,7 +55,7 @@ export default function NewsCard({ article }) {
 
   const NewsCardActions = () => {
     return (
-      <Menubar className='absolute right-0 -translate-y-1 bg-transparent border-none p-0 focus:bg-transparent'>
+      <Menubar className='absolute right-0 bottom-0 -translate-y-1 bg-transparent border-none p-0 '>
         <MenubarMenu>
           <div>
             <MenubarTrigger className='cursor-pointer focus:bg-transparent'>
@@ -93,19 +93,23 @@ export default function NewsCard({ article }) {
   };
 
   return (
-    <Card className='relative border rounded-lg shadow flex flex-col gap-3 px-2'>
-      <CardHeader className='h-[180px] p-0 '>
+    <Card className=' relative border rounded-lg shadow flex flex-col gap-3 border-none'>
+      <CardHeader className='flex w-full h-full p-0 '>
         {isBookmarked && (
-          <Star className='absolute top-2' fill='#FFD700 ' stroke='none' />
+          <Star
+            className='absolute right-0 top-2'
+            fill='#FFD700 '
+            stroke='none'
+          />
         )}
         <NewsCardActions />
 
         <Image
           src={imgSrc}
-          width={300}
+          width={400}
           height={200}
           alt='News'
-          className='w-full h-full object-cover rounded-md '
+          className='w-full h-56 object-cover p-0 m-0'
           onError={() => setImgSrc(categoryFallbacks.default)}
         />
       </CardHeader>
