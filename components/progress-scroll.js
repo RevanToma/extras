@@ -28,7 +28,7 @@ const ProgressScroll = ({
       className={cn(
         `${
           hideOnSmallScreens ? 'hidden lg:block' : ''
-        }  h-2 absolute bg-gradient-to-r from-blue-500 to-purple-500 transition-all animate-pulse shadow-md backdrop-blur-sm `,
+        }  h-2 absolute bg-gradient-to-r from-blue-500 to-purple-500 transition-all animate-pulse shadow-md backdrop-blur-sm z-50 `,
         className
       )}
       style={{

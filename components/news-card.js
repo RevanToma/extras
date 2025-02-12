@@ -5,7 +5,6 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from './ui/card';
@@ -105,11 +104,11 @@ export default function NewsCard({ article }) {
         <NewsCardActions />
 
         <Image
-          src={imgSrc}
           width={400}
           height={200}
+          src={imgSrc}
           alt='News'
-          className='w-full h-56 object-cover p-0 m-0'
+          className='h-80 w-full object-cover'
           onError={() => setImgSrc(categoryFallbacks.default)}
         />
       </CardHeader>
@@ -122,7 +121,7 @@ export default function NewsCard({ article }) {
         </CardDescription>
         {loading && (
           <>
-            <span>Summarizing</span>{' '}
+            <span>Summarizing</span>
             <Loader className='h-4 w-4 animate-spin mx-auto mt-5' />
           </>
         )}
@@ -133,3 +132,5 @@ export default function NewsCard({ article }) {
     </Card>
   );
 }
+
+// 14mars

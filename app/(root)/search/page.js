@@ -16,7 +16,7 @@ const SearchResultsPage = () => {
     if (!query) return;
 
     const getSearchResults = async () => {
-      const articles = await fetchNews('top', query); // ✅ Fetch based on query
+      const articles = await fetchNews('top', query);
       setNews(articles);
       setLoading(false);
     };

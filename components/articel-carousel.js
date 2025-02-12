@@ -58,7 +58,7 @@ const ArticelCarousel = () => {
                           alt='Article'
                           className='w-full h-28 object-cover '
                         />
-                        <div className='p-4 flex flex-col'>
+                        <div className='p-4 flex flex-col gap-3'>
                           <h3 className='text-lg font-semibold line-clamp-2 h-[50px]'>
                             {article.title}
                           </h3>

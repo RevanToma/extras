@@ -19,6 +19,8 @@ export default {
       },
       animation: {
         'fade-up': 'fadeInUp linear',
+        'pulse-fast': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+        'pulse-slow': 'pulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite',
       },
       colors: {
         background: 'hsl(var(--background))',
