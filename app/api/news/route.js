@@ -1,67 +1,21 @@
-import path from 'path';
-import fs from 'fs';
-const CACHE_DIR = path.join(process.cwd(), '.cache');
-const CACHE_FILE = (category) => path.join(CACHE_DIR, `${category}.json`);
+import { fetchAndCacheNews } from '@/lib/newsApi';
 
 export async function GET(req) {
   const { searchParams } = new URL(req.url);
   const category = searchParams.get('category') || 'top';
-  const query = searchParams.get('q');
-
-  if (!fs.existsSync(CACHE_DIR)) {
-    fs.mkdirSync(CACHE_DIR);
-  }
-
-  const cacheFilePath = CACHE_FILE(category);
-
-  if (fs.existsSync(cacheFilePath)) {
-    const cachedData = fs.readFileSync(cacheFilePath, 'utf-8');
-    const articles = JSON.parse(cachedData);
-
-    // ✅ Filter articles based on search query
-    const filteredArticles = query
-      ? articles.filter((article) =>
-          article.title.toLowerCase().includes(query.toLowerCase())
-        )
-      : articles;
-
-    return new Response(JSON.stringify(filteredArticles), {
-      status: 200,
-      headers: { 'Content-Type': 'application/json' },
-    });
-  }
-
-  const apiKey = process.env.NEXT_PUBLIC_NEWS_API_KEY;
-  const apiUrl = process.env.NEXT_PUBLIC_NEWS_API_URL;
-
-  if (!apiKey) {
-    return new Response(JSON.stringify({ error: 'API key is missing' }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' },
-    });
-  }
+  const query = searchParams.get('q') || '';
 
   try {
-    const response = await fetch(
-      `${apiUrl}?apikey=${apiKey}&category=${category}&language=en&q=${
-        query || ''
-      }`
+    const articles = await fetchAndCacheNews(
+      `?category=${category}${query ? `&q=${query}` : ''}`,
+      `${category}${query ? `-search-${query}` : ''}`
     );
-
-    if (!response.ok) {
-      throw new Error(`Failed to fetch news, Status: ${response.status}`);
-    }
-
-    const data = await response.json();
-    fs.writeFileSync(cacheFilePath, JSON.stringify(data.results || []));
-
-    return new Response(JSON.stringify(data.results || []), {
+    return new Response(JSON.stringify(articles), {
       status: 200,
       headers: { 'Content-Type': 'application/json' },
     });
   } catch (error) {
-    console.error('❌ API Fetch Error:', error);
-    return new Response(JSON.stringify({ error: 'Failed to load news' }), {
+    return new Response(JSON.stringify({ error: error.message }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' },
     });

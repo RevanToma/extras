@@ -1,5 +1,4 @@
 'use client';
-import Image from 'next/image';
 import Link from 'next/link';
 import {
   Menubar,
@@ -21,15 +20,7 @@ import { EllipsisVertical } from 'lucide-react';
 import ChasNewsIcon from './chas-news-icon';
 import Search from './search';
 import ProgressScroll from './progress-scroll';
-
-const categories = [
-  'business',
-  'sports',
-  'technology',
-  'entertainment',
-  'health',
-  'science',
-];
+import { categories } from '@/lib/constants';
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -46,7 +37,9 @@ export default function Navbar() {
             width={40}
             height={40}
           /> */}
-          <ChasNewsIcon size={60} />
+          <Link href='/'>
+            <ChasNewsIcon size={60} />
+          </Link>
 
           <Link href='/' className='hidden md:flex text-2xl font-bold '>
             Chas News
