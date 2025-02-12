@@ -28,7 +28,9 @@ const SearchResultsPage = () => {
 
   return (
     <main className='max-w-7xl mx-auto p-6'>
-      <h1 className='text-3xl font-bold mb-4'>Search Results for "{query}"</h1>
+      <h1 className='text-3xl font-bold mb-4'>
+        Found {news.length} Search Results for "{query}"
+      </h1>
       {news.length === 0 ? (
         <p>No articles found.</p>
       ) : (

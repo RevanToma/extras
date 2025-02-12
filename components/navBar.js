@@ -9,13 +9,7 @@ import {
 } from './ui/menubar';
 import { ModeToggle } from './toggle-mode';
 import { usePathname } from 'next/navigation';
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetTitle,
-  SheetTrigger,
-} from './ui/sheet';
+import { Sheet, SheetContent, SheetTitle, SheetTrigger } from './ui/sheet';
 import { EllipsisVertical } from 'lucide-react';
 import ChasNewsIcon from './chas-news-icon';
 import Search from './search';
@@ -29,7 +23,34 @@ export default function Navbar() {
     <header className='sticky top-0 z-50 opacity-95'>
       <ProgressScroll />
 
-      <Menubar className='p-4 w-full flex justify-between items-center  py-4 h-fit '>
+      <Menubar className='p-4 w-full flex justify-between items-center py-4 h-fit border-none'>
+        <nav className='md:hidden'>
+          <Sheet>
+            <SheetTrigger className='align-middle'>
+              <EllipsisVertical />
+            </SheetTrigger>
+            <SheetContent className='flex flex-col' side='left'>
+              <div className='flex flex-col gap-5'>
+                <Link href='/'>
+                  <ChasNewsIcon size={50} />
+                </Link>
+                <SheetTitle className='border-b w-full'>Categories</SheetTitle>
+              </div>
+              {categories.map((category) => (
+                <SheetTitle key={category}>
+                  <Link
+                    href={`/categories/${category}`}
+                    className='flex items-center gap-2 py-2 capitalize'
+                  >
+                    {pathname === `/categories/${category}` && <span>🔹</span>}
+                    {category}
+                  </Link>
+                </SheetTitle>
+              ))}
+              <ModeToggle />
+            </SheetContent>
+          </Sheet>
+        </nav>
         <div className='flex items-center gap-4'>
           {/* <Image
             src='/newlogo.webp'
@@ -37,7 +58,7 @@ export default function Navbar() {
             width={40}
             height={40}
           /> */}
-          <Link href='/'>
+          <Link href='/' className='hidden md:flex'>
             <ChasNewsIcon size={60} />
           </Link>
 
@@ -83,35 +104,6 @@ export default function Navbar() {
 
             <ModeToggle />
           </div>
-          <nav className='md:hidden'>
-            <Sheet>
-              <SheetTrigger className='align-middle'>
-                <EllipsisVertical />
-              </SheetTrigger>
-              <SheetContent className='flex flex-col '>
-                <div className='flex  items-center gap-10'>
-                  <SheetTitle>Menu</SheetTitle>
-                  <ModeToggle />
-                </div>
-                {categories.map((category) => (
-                  <SheetTitle key={category}>
-                    <Link
-                      href={`/categories/${category}`}
-                      className={
-                        `w-full  py-2 capitalize` +
-                        (pathname === `/categories/${category}`
-                          ? ' border-b-2'
-                          : '')
-                      }
-                    >
-                      {category}
-                    </Link>
-                  </SheetTitle>
-                ))}
-                <SheetDescription></SheetDescription>
-              </SheetContent>
-            </Sheet>
-          </nav>
         </MenubarMenu>
       </Menubar>
     </header>
