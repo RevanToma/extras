@@ -1,7 +1,7 @@
 'use server';
 import axios from 'axios';
+import { revalidatePath } from 'next/cache';
 import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
 
 export const createUser = async (username: string, password: string) => {
   try {
@@ -119,7 +119,7 @@ export const signUpAction = async (
   }
 };
 
-export const logoutUser = async () => {
+export const signOutUser = async () => {
   (await cookies()).delete('token');
-  redirect('/');
+  revalidatePath('/me');
 };
