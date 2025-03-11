@@ -4,11 +4,11 @@ import axios from "axios";
 
 
 
-export const createUser = async () => {
+export const createUser = async (username: string, password: string) => {
     try {
         const response = await axios.post("http://localhost:3001/users", {
-            username: "testuser",
-            password: "mypassword"
+            username,
+            password,
         });
 
         console.log("Response:", response.data);
@@ -18,10 +18,10 @@ export const createUser = async () => {
 };
 
 
-export const loginUser = async () => {
+export const loginUser = async (username: string, password: string) => {
     const response = await axios.post("http://localhost:3001/sessions", {
-        username: "testuser",
-        password: "mypassword"
+        username,
+        password
     });
     console.log("Token:", response.data);
 };
