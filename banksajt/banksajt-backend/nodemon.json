@@ -1,0 +1,12 @@
+{
+    "execMap": {
+        "ts": "tsx"
+    },
+    "watch": [
+        "src"
+    ],
+    "ext": "ts",
+    "ignore": [
+        "node_modules"
+    ]
+}
