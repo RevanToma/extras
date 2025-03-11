@@ -1,18 +1,15 @@
-import { Metadata } from "next";
-import SignUpForm from "./sign-up-form";
+import { Metadata } from 'next';
+import SignUpForm from './sign-up-form';
 
-
-export const metaData: Metadata = {
-    title: 'Sign Up'
-}
-
+export const metadata: Metadata = {
+  title: 'Sign Up',
+};
 
 const SignUpPage = () => {
-
-
-    return <div>
-        <h1>Sign Up Page</h1>
-        <SignUpForm />
+  return (
+    <div>
+      <SignUpForm />
     </div>
-}
+  );
+};
 export default SignUpPage;

@@ -1,42 +1,45 @@
-"use client";
-import { useState } from "react";
-import axios from "axios";
-import { useRouter } from "next/navigation";
-import { loginUser } from "@/actions/user.actions";
-import { Button } from "@/components/ui/button";
+'use client';
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { useFormStatus } from 'react-dom';
+import { signInAction } from '@/actions/user.actions';
+import { useRouter } from 'next/navigation';
 
 const SignInForm = () => {
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
-    const router = useRouter();
+  const { pending } = useFormStatus(),
+    [error, setError] = useState<string | null>(null),
+    router = useRouter();
 
-    const handleLogin = async () => {
-        await loginUser(username, password);
-        // router.push("/me/accounts");
-    };
+  const handleSignIn = async (formData: FormData) => {
+    setError(null);
 
-    return (
-        <div className="min-h-screen flex flex-col items-center justify-center gap-2">
-            <h2 className="text-2xl font-bold">Login</h2>
-            <input
-                type="text"
-                placeholder="Username"
-                className="border p-2 mt-2"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-            />
-            <input
-                type="password"
-                placeholder="Password"
-                className="border p-2 mt-2"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-            />
-            <Button onClick={handleLogin} className="mt-4 px-4 py-2">
-                Login
-            </Button>
-        </div>
-    );
-}
+    const { error } = await signInAction(formData);
+
+    if (error) {
+      setError(error);
+      return;
+    }
+
+    router.push('/me');
+  };
+
+  return (
+    <form
+      className='min-h-screen flex flex-col items-center justify-center gap-2'
+      action={handleSignIn}
+    >
+      <h2 className='text-2xl font-bold'>Login</h2>
+      {error && <p className='text-red-500'>{error}</p>}
+      <div className='flex flex-col gap-5'>
+        <Input type='text' placeholder='Username' name='username' />
+        <Input type='password' placeholder='Password' name='password' />
+      </div>
+      <Button type='submit' disabled={pending} className='mt-4 px-4 py-2'>
+        {pending ? 'Logging in...' : 'Login'}
+      </Button>
+    </form>
+  );
+};
 
 export default SignInForm;
