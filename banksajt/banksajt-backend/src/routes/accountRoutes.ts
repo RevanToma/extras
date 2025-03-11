@@ -1,9 +1,14 @@
-import express from "express";
-import { getBalance, depositMoney } from "../controllers/accountController";
+import express from 'express';
+import {
+  getUser,
+  handleTransaction,
+  transactionHistory,
+} from '../controllers/accountController';
 
 const router = express.Router();
 
-router.post("/", getBalance);
-router.post("/transactions", depositMoney);
+router.post('/', getUser);
+router.post('/transactions', handleTransaction);
+router.get('/transactions', transactionHistory);
 
 export default router;

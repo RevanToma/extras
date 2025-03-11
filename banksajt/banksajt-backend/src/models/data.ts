@@ -1,5 +1,4 @@
-import { Account, Session, User } from "../types";
-
+import { Account, Session, User } from '../types';
 
 export const users: User[] = [];
 export const accounts: Account[] = [];
