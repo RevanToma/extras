@@ -2,25 +2,22 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { makeTransaction } from '@/actions/transactions.actions';
+import { TransactionHistory } from '@/types';
 
-type BankAction = 'deposit' | 'withdraw';
-
-interface Transaction {
-  type: BankAction;
-  amount: number;
-  date: string;
-}
-
-export default function BankDashboard({
+const BankDashboard = ({
   accountBalance,
+  transactionHistory,
 }: {
   accountBalance: number;
-}) {
-  const [balance, setBalance] = useState(accountBalance);
-  const [amount, setAmount] = useState('');
-  const [transactions, setTransactions] = useState<Transaction[]>([]);
+  transactionHistory: TransactionHistory[];
+}) => {
+  const [balance, setBalance] = useState(accountBalance),
+    [amount, setAmount] = useState(''),
+    [transactions, setTransactions] =
+      useState<TransactionHistory[]>(transactionHistory);
 
-  const handleTransaction = (type: BankAction) => {
+  const handleTransaction = async (type: 'deposit' | 'withdraw') => {
     const amt = parseFloat(amount);
     if (isNaN(amt) || amt <= 0) return;
 
@@ -29,19 +26,30 @@ export default function BankDashboard({
       return;
     }
 
-    const newBalance = type === 'deposit' ? balance + amt : balance - amt;
-    setBalance(newBalance);
-    setTransactions([
-      { type, amount: amt, date: new Date().toLocaleString() },
-      ...transactions,
-    ]);
+    const response = await makeTransaction(amt, type);
 
+    if (!response || !response.transaction) {
+      alert('Transaction failed!');
+      return;
+    }
+
+    setBalance(response.balance);
+    setTransactions([response.transaction, ...transactions]);
     setAmount('');
   };
 
+  const sortedTransactions = transactions.sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+  );
+
   return (
-    <div className='min-h-screen flex flex-col items-center bg-gray-100 p-6'>
-      <div className='w-full max-w-2xl bg-white shadow-lg rounded-lg p-6 text-center'>
+    <div className='min-h-screen flex flex-col items-center p-6 text-secondary'>
+      <div
+        className='w-full max-w-2xl shadow-lg rounded-lg p-6 text-center'
+        style={{
+          backgroundColor: 'oklch(0.18 0.05 264.695)',
+        }}
+      >
         <h1 className='text-3xl font-bold mb-4'>Transactions</h1>
         <div className='text-lg mb-6'>
           <p className='text-muted-foreground'>Your Balance</p>
@@ -75,10 +83,10 @@ export default function BankDashboard({
 
         <div className='text-left'>
           <h2 className='text-xl font-semibold mb-2'>Recent Transactions</h2>
-          <ul className='bg-gray-50 p-4 rounded-lg max-h-60 overflow-y-auto'>
-            {transactions.length > 0 ? (
-              transactions.map((tx, index) => (
-                <li key={index} className='border-b py-2 flex justify-between'>
+          <ul className='p-4 rounded-lg max-h-96 overflow-y-auto'>
+            {sortedTransactions.length > 0 ? (
+              sortedTransactions.map((tx) => (
+                <li key={tx.id} className='border-b py-2 flex justify-between'>
                   <span>{tx.date}</span>
                   <span
                     className={
@@ -100,4 +108,6 @@ export default function BankDashboard({
       </div>
     </div>
   );
-}
+};
+
+export default BankDashboard;

@@ -27,12 +27,12 @@ const SignInForm = () => {
 
   return (
     <div className='flex items-center justify-center flex-col min-h-screen gap-3'>
+      <h2 className='text-2xl font-bold text-secondary'>Sign In</h2>
+      {error && <p className='text-red-500'>{error}</p>}
       <form
-        className=' flex flex-col items-center justify-center gap-2'
+        className=' flex flex-col items-center justify-center gap-2 text-secondary'
         action={handleSignIn}
       >
-        <h2 className='text-2xl font-bold'>Sign In</h2>
-        {error && <p className='text-red-500'>{error}</p>}
         <div className='flex flex-col gap-5'>
           <Input type='text' placeholder='Username' name='username' />
           <Input type='password' placeholder='Password' name='password' />
@@ -45,9 +45,9 @@ const SignInForm = () => {
           {pending ? 'Logging in...' : 'Login'}
         </Button>
       </form>
-      <div>
+      <div className='text-secondary'>
         <span>Don't have an account?</span>
-        <Button asChild variant={'link'} className='p-2'>
+        <Button asChild variant={'link'} className='p-2 text-secondary'>
           <Link href='/sign-up'>Sign Up</Link>
         </Button>
       </div>

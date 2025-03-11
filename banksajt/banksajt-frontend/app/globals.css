@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @plugin "tailwindcss-animate";
 
@@ -123,4 +123,8 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+body {
+  background-color: oklch(0.129 0.042 264.695);
 }

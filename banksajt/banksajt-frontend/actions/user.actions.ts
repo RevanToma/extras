@@ -121,5 +121,5 @@ export const signUpAction = async (
 
 export const signOutUser = async () => {
   (await cookies()).delete('token');
-  revalidatePath('/me');
+  // revalidatePath('/me');
 };
