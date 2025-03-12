@@ -128,3 +128,8 @@
 body {
   background-color: oklch(0.129 0.042 264.695);
 }
+
+.lucide-x {
+  color: white;
+  cursor: pointer;
+}

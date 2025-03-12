@@ -154,3 +154,19 @@ export const signUpAction = async (prevState: unknown, formData: FormData) => {
 export const signOutUser = async () => {
   (await cookies()).delete('token');
 };
+
+export const getTotalUsers = async () => {
+  try {
+    const response = await axios.get(
+      `${process.env.NEXT_PUBLIC_BACKEND_BASE_URL}/users`
+    );
+
+    if (!response) {
+      throw new Error('Something went wrong');
+    }
+
+    return response.data.users;
+  } catch (error) {
+    console.error('Error:', error);
+  }
+};

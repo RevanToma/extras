@@ -83,6 +83,7 @@ const BankDashboard = ({
           <Button
             onClick={() => handleTransaction('deposit')}
             disabled={isLoading}
+            className='cursor-pointer'
           >
             {isLoading ? 'Processing...' : 'Deposit'}
           </Button>
@@ -90,6 +91,7 @@ const BankDashboard = ({
             onClick={() => handleTransaction('withdraw')}
             variant='destructive'
             disabled={isLoading}
+            className='cursor-pointer'
           >
             {isLoading ? 'Processing...' : 'Withdraw'}
           </Button>

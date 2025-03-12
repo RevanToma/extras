@@ -1,7 +1,12 @@
+import { getTotalUsers } from '@/actions/user.actions';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 
-export default function Home() {
+export default async function Home() {
+  const data = await getTotalUsers(),
+    baseUsers = 20,
+    totalUsers = baseUsers + (data || 0);
+
   return (
     <div className='flex flex-col items-center justify-center h-screen p-6 gap-4'>
       <h1
@@ -14,6 +19,12 @@ export default function Home() {
       <p className='text-lg text-muted-foreground '>
         Manage your finances with ease. Secure transactions, real-time updates,
         and effortless banking—all at your fingertips.
+      </p>
+
+      <p className='text-lg font-medium text-gray-400'>
+        {totalUsers > 0
+          ? `🚀 Join ${totalUsers} users already banking with us!`
+          : 'Be the first to start banking with us!'}
       </p>
 
       <Button

@@ -20,7 +20,6 @@ const AuditLogsSheet = ({ auditLogs }: { auditLogs: AuditLogType[] }) => {
       <SheetTrigger asChild>
         <Button
           variant='secondary'
-          size='sm'
           className='text-accent-foreground cursor-pointer'
         >
           View Account Activity
@@ -28,9 +27,9 @@ const AuditLogsSheet = ({ auditLogs }: { auditLogs: AuditLogType[] }) => {
       </SheetTrigger>
       <SheetContent
         side='right'
-        className='w-80 p-4'
+        className='w-80 p-4 border-none'
         style={{
-          backgroundColor: 'oklch(0.18 0.05 264.695)',
+          backgroundColor: 'oklch(0.129 0.042 264.695)',
         }}
       >
         <SheetTitle className='text-xl font-semibold mb-3 text-secondary'>
