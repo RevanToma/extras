@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { getAuditLogs, getUser, signOutUser } from '@/actions/user.actions';
+import { getUser } from '@/actions/user.actions';
 import { redirect } from 'next/navigation';
 
 import { getTransactions } from '@/actions/transactions.actions';

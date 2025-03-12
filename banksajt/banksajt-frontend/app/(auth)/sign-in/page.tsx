@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
-import SignInForm from './sign-in-form';
+import AuthForm from '@/components/shared/auth-form';
+import { signInAction } from '@/actions/user.actions';
 
 export const metadata: Metadata = {
   title: 'Sign In',
@@ -8,7 +9,13 @@ export const metadata: Metadata = {
 const SignInPage = () => {
   return (
     <div>
-      <SignInForm />
+      <AuthForm
+        title='Sign In'
+        action={signInAction}
+        buttonText='Sign In'
+        linkText='Don’t have an account?'
+        linkHref='/sign-up'
+      />
     </div>
   );
 };
