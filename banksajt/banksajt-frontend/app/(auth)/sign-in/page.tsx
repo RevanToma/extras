@@ -10,6 +10,7 @@ const SignInPage = () => {
   return (
     <div>
       <AuthForm
+        type='sign-in'
         title='Sign In'
         action={signInAction}
         buttonText='Sign In'

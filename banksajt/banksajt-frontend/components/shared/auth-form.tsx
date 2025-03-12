@@ -15,6 +15,7 @@ interface AuthFormProps {
   buttonText: string;
   linkText: string;
   linkHref: string;
+  type: 'sign-in' | 'sign-up';
 }
 
 const AuthForm = ({
@@ -23,6 +24,7 @@ const AuthForm = ({
   buttonText,
   linkText,
   linkHref,
+  type,
 }: AuthFormProps) => {
   const [data, formAction] = useActionState(action, {
       success: false,
@@ -50,7 +52,7 @@ const AuthForm = ({
           <Input type='text' placeholder='Username' name='username' />
           <Input type='password' placeholder='Password' name='password' />
         </div>
-        <AuthButton text={buttonText} />
+        <AuthButton text={buttonText} type={type} />
       </form>
       <div>
         <span>{linkText}</span>
@@ -62,11 +64,21 @@ const AuthForm = ({
   );
 };
 
-const AuthButton = ({ text }: { text: string }) => {
+const AuthButton = ({
+  text,
+  type,
+}: {
+  text: string;
+  type: 'sign-in' | 'sign-up';
+}) => {
   const { pending } = useFormStatus();
   return (
     <Button variant={'default'} className='w-full' disabled={pending}>
-      {pending ? 'Processing...' : text}
+      {pending && type === 'sign-up'
+        ? 'Signing Up...'
+        : pending && type === 'sign-in'
+        ? 'Signing In...'
+        : text}
     </Button>
   );
 };

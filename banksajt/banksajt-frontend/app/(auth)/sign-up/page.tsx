@@ -9,6 +9,7 @@ export const metadata: Metadata = {
 const SignUpPage = () => {
   return (
     <AuthForm
+      type='sign-up'
       title='Sign Up'
       action={signUpAction}
       buttonText='Sign Up'
