@@ -7,3 +7,9 @@ export type TransactionHistory = {
   amount: number;
   date: string;
 };
+
+export type AuditLogs = {
+  userId: number;
+  action: string;
+  date: string;
+};

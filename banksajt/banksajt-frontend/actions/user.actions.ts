@@ -2,6 +2,31 @@
 import axios from 'axios';
 import { cookies } from 'next/headers';
 
+export const getAuditLogs = async () => {
+  try {
+    const token = (await cookies()).get('token')?.value;
+
+    if (!token) throw new Error('Unauthorized');
+
+    const response = await axios.get(
+      `${process.env.NEXT_PUBLIC_BACKEND_BASE_URL}/me/accounts/audit-logs`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (response.status !== 200) {
+      throw new Error('Invalid token');
+    }
+
+    return response.data;
+  } catch (error) {
+    console.error('Error:', error);
+  }
+};
+
 export const createUser = async (username: string, password: string) => {
   try {
     const response = await axios.post(

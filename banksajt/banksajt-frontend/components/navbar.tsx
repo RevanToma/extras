@@ -1,11 +1,14 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { signOutUser } from '@/actions/user.actions';
+import { getAuditLogs, signOutUser } from '@/actions/user.actions';
 import { cookies } from 'next/headers';
+import AuditLogsSheet from '@/app/(root)/me/audit-logs';
 
 const Navbar = async () => {
   const token = (await cookies()).get('token')?.value,
-    isAuthenticated = !!token;
+    isAuthenticated = !!token,
+    auditLogs = await getAuditLogs();
+
   return (
     <nav className='p-4 shadow-lg flex justify-between items-center '>
       <Link
@@ -22,6 +25,7 @@ const Navbar = async () => {
               <Link href='/me'>Dashboard</Link>
             </Button>
 
+            <AuditLogsSheet auditLogs={auditLogs.logs} />
             <Button
               variant='destructive'
               onClick={signOutUser}
