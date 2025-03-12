@@ -1,16 +1,9 @@
 import { Request, Response } from 'express';
 import { accounts, sessions } from '../models/data';
+import { getSession } from '../utils/getSession';
 
 export const getUser = (req: Request, res: Response): void => {
-  const authHeader = req.headers.authorization;
-
-  if (!authHeader || !authHeader.startsWith('Bearer ')) {
-    res.status(401).json({ message: 'Unauthorized: No token provided' });
-    return;
-  }
-
-  const token = authHeader.split(' ')[1],
-    session = sessions.find((s) => s.token === token);
+  const session = getSession(req);
 
   if (!session) {
     res.status(401).json({ message: 'Invalid or expired session' });
@@ -22,8 +15,7 @@ export const getUser = (req: Request, res: Response): void => {
   return;
 };
 export const handleTransaction = (req: Request, res: Response): void => {
-  const { token, amount, type } = req.body; // ✅ Expect type in request
-
+  const { token, amount, type } = req.body;
   if (!amount || amount <= 0) {
     res.status(400).json({ message: 'Invalid amount' });
     return;
@@ -73,15 +65,7 @@ export const handleTransaction = (req: Request, res: Response): void => {
 };
 
 export const transactionHistory = (req: Request, res: Response): void => {
-  const authHeader = req.headers.authorization;
-
-  if (!authHeader || !authHeader.startsWith('Bearer ')) {
-    res.status(401).json({ message: 'Unauthorized: No token provided' });
-    return;
-  }
-
-  const token = authHeader.split(' ')[1],
-    session = sessions.find((s) => s.token === token);
+  const session = getSession(req);
 
   if (!session) {
     res.status(401).json({ message: 'Invalid or expired session' });

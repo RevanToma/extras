@@ -8,6 +8,12 @@ export const createUser = (req: Request, res: Response): void => {
     res.status(400).json({ message: 'Username and password are required' });
     return;
   }
+  const userExists = users.some((user) => user.username === username);
+
+  if (userExists) {
+    res.status(400).json({ message: 'Username already exists' });
+    return;
+  }
 
   const id = users.length + 1;
   users.push({ id, username, password });
