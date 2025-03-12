@@ -57,13 +57,8 @@ const BankDashboard = ({
   );
 
   return (
-    <div className=' flex gap-4 justify-center p-6 text-secondary'>
-      <div
-        className='w-full max-w-2xl shadow-lg rounded-lg p-6 text-center'
-        style={{
-          backgroundColor: 'oklch(0.18 0.05 264.695)',
-        }}
-      >
+    <div className=' flex gap-4 justify-center p-6 '>
+      <div className='w-full max-w-2xl shadow-lg rounded-lg p-6 text-center'>
         <h1 className='text-3xl font-bold mb-4'>Transactions</h1>
         <div className='text-lg mb-6'>
           <p className='text-muted-foreground'>Your Balance</p>
@@ -108,7 +103,7 @@ const BankDashboard = ({
                     className={
                       tx.type === 'deposit'
                         ? 'text-green-600 font-bold'
-                        : 'text-red-600 font-bold'
+                        : 'text-destructive font-bold'
                     }
                   >
                     {tx.type === 'deposit' ? '+$' : '-$'}

@@ -31,10 +31,12 @@ const SignUpForm = () => {
   }, [data, router]);
   return (
     <div className='flex items-center justify-center flex-col min-h-screen gap-3'>
-      <h2 className='text-2xl font-bold text-secondary'>Sign Up</h2>
-      {data && !data.success && <p className='text-red-500'>{data.message}</p>}
+      <h2 className='text-2xl font-bold '>Sign Up</h2>
+      {data && !data.success && (
+        <p className='text-destructive'>{data.message}</p>
+      )}
       <form
-        className=' flex flex-col items-center justify-center gap-2 text-secondary'
+        className=' flex flex-col items-center justify-center gap-2 '
         action={action}
       >
         <div className='flex flex-col gap-5'>
@@ -43,9 +45,9 @@ const SignUpForm = () => {
         </div>
         <SignUpButton />
       </form>
-      <div className='text-secondary'>
+      <div>
         <span>Already have an account?</span>
-        <Button asChild variant={'link'} className='p-2 text-secondary'>
+        <Button asChild variant={'link'} className='p-2 '>
           <Link href='/sign-in'>Sign In</Link>
         </Button>
       </div>

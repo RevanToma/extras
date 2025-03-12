@@ -18,30 +18,21 @@ const AuditLogsSheet = ({ auditLogs }: { auditLogs: AuditLogType[] }) => {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button
-          variant='secondary'
-          className='text-accent-foreground cursor-pointer'
-        >
+        <Button variant='outline' className='cursor-pointer'>
           View Account Activity
         </Button>
       </SheetTrigger>
-      <SheetContent
-        side='right'
-        className='w-80 p-4 border-none'
-        style={{
-          backgroundColor: 'oklch(0.129 0.042 264.695)',
-        }}
-      >
-        <SheetTitle className='text-xl font-semibold mb-3 text-secondary'>
+      <SheetContent side='right' className='w-80 p-4 '>
+        <SheetTitle className='text-xl font-semibold mb-3 '>
           Account Activity
         </SheetTitle>
 
         {sortedLogs.length > 0 ? (
-          <ul className='max-h-96 overflow-y-auto divide-y divide-muted-foreground '>
+          <ul className='overflow-y-auto divide-y divide-muted-foreground '>
             {sortedLogs.map((log, index) => (
               <li
                 key={index}
-                className='py-3 flex justify-between items-center text-sm sm:text-base text-secondary'
+                className='py-3 flex justify-between items-center text-sm sm:text-base '
               >
                 <span>{new Date(log.date).toLocaleString()}</span>
                 <span className='font-medium'>{log.action}</span>
