@@ -14,8 +14,13 @@ import { User } from 'lucide-react';
 
 const Navbar = async () => {
   const token = (await cookies()).get('token')?.value,
-    isAuthenticated = !!token,
+    isAuthenticated = !!token;
+
+  let auditLogs = { logs: [] };
+
+  if (isAuthenticated) {
     auditLogs = await getAuditLogs();
+  }
 
   return (
     <nav className='p-4 shadow-lg flex justify-between items-center '>
