@@ -1,6 +1,5 @@
 'use server';
 import axios from 'axios';
-import { revalidatePath } from 'next/cache';
 import { cookies } from 'next/headers';
 
 export const createUser = async (username: string, password: string) => {
@@ -19,8 +18,12 @@ export const createUser = async (username: string, password: string) => {
     }
 
     return response.data;
-  } catch (error) {
-    console.error('Error:', error);
+  } catch (error: any) {
+    if (axios.isAxiosError(error)) {
+      return { error: error.response?.data?.message || 'An error occurred' };
+    }
+
+    return { error: error.message || 'Something went wrong' };
   }
 };
 
@@ -71,9 +74,7 @@ export const getUser = async () => {
   }
 };
 
-export const signInAction = async (
-  formData: FormData
-): Promise<{ success: boolean; error: null | string }> => {
+export const signInAction = async (prevState: unknown, formData: FormData) => {
   const username = formData.get('username') as string,
     password = formData.get('password') as string;
 
@@ -86,40 +87,45 @@ export const signInAction = async (
 
     (await cookies()).set('token', response.token, { path: '/' });
 
-    return { success: true, error: null };
-  } catch (error) {
+    return { success: true, message: 'Signed In Successfully' };
+  } catch (error: any) {
     return {
       success: false,
-      error: 'Failed to sign in. Please check your credentials.',
+      message: error.message.includes('exists')
+        ? 'Username already exists'
+        : error.message || 'Invalid credentials',
     };
   }
 };
 
-export const signUpAction = async (
-  formData: FormData
-): Promise<{ success: boolean; error: null | string }> => {
+export const signUpAction = async (prevState: unknown, formData: FormData) => {
   const username = formData.get('username') as string,
     password = formData.get('password') as string;
 
   try {
     const response = await createUser(username, password);
 
-    if (!response || !response.token) {
+    if (response?.error) {
+      throw new Error(response.error);
+    }
+
+    if (!response?.token) {
       throw new Error('Invalid credentials');
     }
 
     (await cookies()).set('token', response.token, { path: '/' });
 
-    return { success: true, error: null };
-  } catch (error) {
+    return { success: true, message: 'Signed Up Successfully' };
+  } catch (error: any) {
     return {
       success: false,
-      error: 'Failed to sign up. Please try again.',
+      message: error.message.includes('exists')
+        ? 'Username already exists'
+        : error.message || 'Invalid credentials',
     };
   }
 };
 
 export const signOutUser = async () => {
   (await cookies()).delete('token');
-  // revalidatePath('/me');
 };
