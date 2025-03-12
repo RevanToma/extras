@@ -29,3 +29,7 @@ export const createUser = (req: Request, res: Response): void => {
 
   res.status(201).json({ message: 'User created successfully', userId: id });
 };
+
+export const getUsers = (req: Request, res: Response): void => {
+  res.json({ users: users.length });
+};
