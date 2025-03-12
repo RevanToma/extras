@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { users, accounts } from '../models/data';
+import { logAction } from '../utils/helpers';
 
 export const createUser = (req: Request, res: Response): void => {
   const { username, password } = req.body;
@@ -23,6 +24,8 @@ export const createUser = (req: Request, res: Response): void => {
     amount: 0,
     transactions: [],
   });
+
+  logAction(id, 'Created account');
 
   res.status(201).json({ message: 'User created successfully', userId: id });
 };

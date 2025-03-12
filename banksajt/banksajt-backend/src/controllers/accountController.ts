@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { accounts, sessions } from '../models/data';
-import { getSession } from '../utils/getSession';
+import { getSession, logAction } from '../utils/helpers';
 
 export const getUser = (req: Request, res: Response): void => {
   const session = getSession(req);
@@ -11,6 +11,7 @@ export const getUser = (req: Request, res: Response): void => {
   }
 
   const account = accounts.find((acc) => acc.userId === session.userId);
+
   res.json({ account });
   return;
 };
@@ -52,6 +53,11 @@ export const handleTransaction = (req: Request, res: Response): void => {
       date: new Date().toISOString(),
     };
     account.transactions.push(transaction);
+
+    logAction(
+      session.userId,
+      `${type === 'deposit' ? 'Deposited' : 'Withdrew'} ${amount}$`
+    );
 
     res.json({
       message: 'Transaction successful',

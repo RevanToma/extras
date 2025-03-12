@@ -1,3 +1,9 @@
+export type AuditLogs = {
+  userId: number;
+  action: string;
+  date: string;
+};
+
 export type Transaction = {
   id: number;
   accountId: number;
