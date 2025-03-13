@@ -48,19 +48,17 @@ const BalanceGoal = ({ balance }: { balance: number }) => {
 
   return (
     <motion.div
-      className='p-4 bg-muted rounded-lg shadow-lg w-full mt-6'
+      className='p-4 bg-muted rounded-lg shadow-lg w-full mt-6 flex flex-col gap-2'
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
     >
-      <h3 className='text-lg font-semibold text-center mb-2'>
-        🎯 Savings Goal
-      </h3>
+      <h3 className='text-lg font-semibold text-center '>🎯 Savings Goal</h3>
 
       <Progress value={progress} className='w-full' />
       {progress >= 100 && (
         <motion.p
-          className='text-green-500 font-bold mt-2 text-center'
+          className='text-green-500 font-bold text-center'
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
         >
@@ -68,18 +66,27 @@ const BalanceGoal = ({ balance }: { balance: number }) => {
         </motion.p>
       )}
 
-      <div className='flex items-center gap-2 mt-4'>
+      <div className='flex flex-col sm:flex-col md:flex-row lg:flex-row items-center gap-2 w-full'>
         <Input
           type='number'
           placeholder='Set savings goal'
           value={customGoal}
           onChange={(e) => setCustomGoal(e.target.value)}
-          className='w-full'
+          className='w-full border-muted-foreground'
         />
-        <Button onClick={handleSetGoal} size='sm'>
+        <Button
+          onClick={handleSetGoal}
+          size='sm'
+          className='w-full sm:w-full md:w-auto lg:w-auto'
+        >
           Set Goal
         </Button>
-        <Button onClick={handleResetGoal} size='sm' variant='destructive'>
+        <Button
+          onClick={handleResetGoal}
+          size='sm'
+          variant='destructive'
+          className='w-full sm:w-full md:w-auto lg:w-auto'
+        >
           Reset
         </Button>
       </div>

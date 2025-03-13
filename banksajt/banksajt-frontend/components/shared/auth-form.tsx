@@ -57,7 +57,9 @@ const AuthForm = ({
       <div>
         <span>{linkText}</span>
         <Button asChild variant={'link'} className='p-2'>
-          <Link href={linkHref}>{buttonText}</Link>
+          <Link href={linkHref}>
+            {type === 'sign-in' ? 'Sign Up' : 'Sign In'}
+          </Link>
         </Button>
       </div>
     </div>
