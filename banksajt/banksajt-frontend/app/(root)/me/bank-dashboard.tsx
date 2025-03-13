@@ -13,6 +13,7 @@ import {
   DialogContent,
   DialogTitle,
 } from '@/components/ui/dialog';
+import { motion } from 'motion/react';
 
 const BankDashboard = ({
   accountBalance,
@@ -61,7 +62,13 @@ const BankDashboard = ({
   );
 
   return (
-    <div className='flex flex-col gap-6 justify-center p-6 items-center w-full'>
+    <motion.div
+      initial={{ y: '100%', opacity: 0 }}
+      exit={{ y: '-100%', opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.8, ease: 'easeInOut' }}
+      className='flex flex-col gap-6 justify-center p-6 items-center w-full'
+    >
       <div className='w-full max-w-2xl shadow-lg rounded-lg p-6 text-center'>
         <h1 className='text-3xl font-bold mb-4'>Transactions</h1>
 
@@ -151,7 +158,7 @@ const BankDashboard = ({
           </ul>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 export default BankDashboard;
