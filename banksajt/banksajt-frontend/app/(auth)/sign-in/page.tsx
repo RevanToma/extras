@@ -7,8 +7,7 @@ export const metadata: Metadata = {
 };
 
 const SignInPage = () => {
-  return (
-    <div>
+  return (   
       <AuthForm
         type='sign-in'
         title='Sign In'
@@ -16,8 +15,7 @@ const SignInPage = () => {
         buttonText='Sign In'
         linkText='Don’t have an account?'
         linkHref='/sign-up'
-      />
-    </div>
+      />   
   );
 };
 export default SignInPage;
