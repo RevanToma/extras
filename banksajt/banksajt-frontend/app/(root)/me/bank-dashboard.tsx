@@ -5,6 +5,14 @@ import { Input } from '@/components/ui/input';
 import { makeTransaction } from '@/actions/transactions.actions';
 import { TransactionHistory } from '@/types';
 import { useQueryClient, useMutation } from '@tanstack/react-query';
+import TransactionChart from '@/components/transaction-chart';
+import AnimateBalance from '@/components/animate-balance';
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogTitle,
+} from '@/components/ui/dialog';
 
 const BankDashboard = ({
   accountBalance,
@@ -15,16 +23,12 @@ const BankDashboard = ({
 }) => {
   const [amount, setAmount] = useState(''),
     queryClient = useQueryClient(),
-    [isLoading, setIsLoading] = useState(false);
+    [isLoading, setIsLoading] = useState(false),
+    [showChart, setShowChart] = useState(false);
 
   const transactionMutation = useMutation({
-    mutationFn: ({
-      amount,
-      type,
-    }: {
-      amount: number;
-      type: 'deposit' | 'withdraw';
-    }) => makeTransaction(amount, type),
+    mutationFn: (data: { amount: number; type: 'deposit' | 'withdraw' }) =>
+      makeTransaction(data.amount, data.type),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['transactions'] });
     },
@@ -57,17 +61,47 @@ const BankDashboard = ({
   );
 
   return (
-    <div className=' flex gap-4 justify-center p-6 '>
+    <div className='flex flex-col gap-6 justify-center p-6 items-center w-full'>
       <div className='w-full max-w-2xl shadow-lg rounded-lg p-6 text-center'>
         <h1 className='text-3xl font-bold mb-4'>Transactions</h1>
-        <div className='text-lg mb-6'>
-          <p className='text-muted-foreground'>Your Balance</p>
-          <p className='text-4xl font-bold text-green-600'>
-            ${accountBalance.toFixed(2)}
-          </p>
+
+        <div className='flex items-center justify-between w-full'>
+          <div>
+            <p className='text-muted-foreground'>Your Balance</p>
+            <AnimateBalance balance={accountBalance} />
+          </div>
+          <Button
+            variant='outline'
+            size='sm'
+            className='cursor-pointer'
+            onClick={() => setShowChart(!showChart)}
+          >
+            {showChart ? 'Hide Chart' : 'View Chart'}
+          </Button>
         </div>
 
-        <div className='flex flex-col md:flex-row gap-4 justify-center mb-6'>
+        {showChart && (
+          <div className='mt-4 bg-muted p-4 rounded-lg'>
+            <TransactionChart transactions={transactionHistory} />
+            <Dialog>
+              <DialogTrigger asChild>
+                <Button
+                  variant='link'
+                  size='sm'
+                  className='mt-2 text-primary cursor-pointer'
+                >
+                  Expand Full View
+                </Button>
+              </DialogTrigger>
+              <DialogContent className='max-w-4xl'>
+                <DialogTitle>Transaction History</DialogTitle>
+                <TransactionChart transactions={transactionHistory} />
+              </DialogContent>
+            </Dialog>
+          </div>
+        )}
+
+        <div className='flex flex-col md:flex-row gap-4 justify-center mt-6'>
           <Input
             type='number'
             placeholder='Enter amount'
@@ -92,7 +126,7 @@ const BankDashboard = ({
           </Button>
         </div>
 
-        <div className='text-left'>
+        <div className='text-left mt-6'>
           <h2 className='text-xl font-semibold mb-2'>Recent Transactions</h2>
           <ul className='p-4 rounded-lg max-h-96 overflow-y-auto'>
             {sortedTransactions.length > 0 ? (
@@ -117,7 +151,6 @@ const BankDashboard = ({
           </ul>
         </div>
       </div>
-      <div className='flex flex-col gap-4 items-center p-3'></div>
     </div>
   );
 };
