@@ -1,5 +1,5 @@
 'use client';
-import { useState, useMemo } from 'react';
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { makeTransaction } from '@/actions/transactions.actions';
@@ -14,6 +14,8 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { motion } from 'motion/react';
+import Transactions from './transactions';
+import BalanceGoal from '@/components/balance-goal';
 
 const BankDashboard = ({
   accountBalance,
@@ -53,14 +55,6 @@ const BankDashboard = ({
     }
   };
 
-  const sortedTransactions = useMemo(
-    () =>
-      [...transactionHistory].sort(
-        (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-      ),
-    [transactionHistory]
-  );
-
   return (
     <motion.div
       initial={{ y: '100%', opacity: 0 }}
@@ -77,6 +71,7 @@ const BankDashboard = ({
             <p className='text-muted-foreground'>Your Balance</p>
             <AnimateBalance balance={accountBalance} />
           </div>
+
           <Button
             variant='outline'
             size='sm'
@@ -132,31 +127,9 @@ const BankDashboard = ({
             {isLoading ? 'Processing...' : 'Withdraw'}
           </Button>
         </div>
+        <Transactions transactionHistory={transactionHistory} />
 
-        <div className='text-left mt-6'>
-          <h2 className='text-xl font-semibold mb-2'>Recent Transactions</h2>
-          <ul className='p-4 rounded-lg max-h-96 overflow-y-auto'>
-            {sortedTransactions.length > 0 ? (
-              sortedTransactions.map((tx) => (
-                <li key={tx.id} className='border-b py-2 flex justify-between'>
-                  <span>{new Date(tx.date).toLocaleDateString()}</span>
-                  <span
-                    className={
-                      tx.type === 'deposit'
-                        ? 'text-green-600 font-bold'
-                        : 'text-destructive font-bold'
-                    }
-                  >
-                    {tx.type === 'deposit' ? '+$' : '-$'}
-                    {tx.amount.toFixed(2)}
-                  </span>
-                </li>
-              ))
-            ) : (
-              <p className='text-gray-500'>No transactions yet</p>
-            )}
-          </ul>
-        </div>
+        <BalanceGoal balance={accountBalance} />
       </div>
     </motion.div>
   );

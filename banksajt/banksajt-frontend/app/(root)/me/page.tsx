@@ -18,12 +18,10 @@ const AccountPage = async () => {
   }
 
   return (
-    <div>
-      <BankDashboard
-        accountBalance={userData.account.amount}
-        transactionHistory={transactionsHistory.transactions}
-      />
-    </div>
+    <BankDashboard
+      accountBalance={userData.account.amount}
+      transactionHistory={transactionsHistory.transactions}
+    />
   );
 };
 
