@@ -1,3 +1,4 @@
+import Footer from '@/components/footer';
 import Navbar from '@/components/navbar';
 import React from 'react';
 
@@ -11,6 +12,7 @@ export default function RootLayout({
       <main className='flex-1 wrapper'>
         <Navbar />
         {children}
+        <Footer />
       </main>
     </div>
   );
