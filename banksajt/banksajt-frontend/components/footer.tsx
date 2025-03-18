@@ -1,18 +1,26 @@
+"use client"
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ModeToggle } from './mode-toggle';
+import { useTheme } from 'next-themes';
+import { cn } from '@/lib/utils';
+import Logo from './logo';
 
 const Footer = () => {
+    const { theme } = useTheme()
     return (
         <footer
 
-            className='w-full bg-muted py-6 px-4 mt-10'
+            className={cn(
+                "w-full p-6 text-center transition-all duration-300 my-10",
+                theme === "dark"
+                    ? "bg-gradient-to-r from-gray-800 to-gray-900 text-gray-300"
+                    : "bg-gradient-to-r from-emerald-300 to-sky-400 text-white"
+            )}
         >
             <div className='max-w-6xl mx-auto flex flex-col sm:flex-col md:flex-row lg:flex-row items-center justify-between text-muted-foreground gap-4'>
                 <div className='text-center md:text-left'>
-                    <h2 className='text-2xl font-bold bg-gradient-to-r from-emerald-400 to-sky-500 bg-clip-text text-transparent'>
-                        MoneyMate
-                    </h2>
+                    <Logo />
                     <p className='text-sm mt-1'>Your trusted financial partner.</p>
                 </div>
                 <div className='flex gap-6 text-sm'>

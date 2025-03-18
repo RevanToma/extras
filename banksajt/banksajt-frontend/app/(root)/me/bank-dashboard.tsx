@@ -62,7 +62,7 @@ const BankDashboard = ({
       exit={{ y: '-100%', opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: 'easeInOut' }}
-      className='flex flex-col gap-6 justify-center p-6 items-center w-full'
+      className='flex flex-col gap-6 justify-center p-6 items-center w-full my-7'
     >
       <div className='w-full max-w-2xl shadow-lg rounded-lg p-6 text-center'>
         <h1 className='text-3xl font-bold mb-4'>Transactions</h1>

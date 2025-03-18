@@ -11,6 +11,8 @@ import {
   DropdownMenuTrigger,
 } from './ui/dropdown-menu';
 import { User } from 'lucide-react';
+import StyledNavBar from './styled-navbar';
+import Logo from './logo';
 
 const Navbar = async () => {
   const token = (await cookies()).get('token')?.value,
@@ -23,21 +25,15 @@ const Navbar = async () => {
   }
 
   return (
-    <nav className='p-4 shadow-lg flex justify-between items-center '>
-      <Link
-        href='/'
-        className='text-2xl font-bold tracking-widest bg-gradient-to-r from-emerald-300 to-sky-400 
-            bg-clip-text text-transparent'
-      >
-        MoneyMate
-      </Link>
+    <StyledNavBar >
+      <Logo />
       <div className='flex gap-4'>
         {isAuthenticated ? (
           <>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant='outline' className='cursor-pointer'>
-                  <User />
+                <Button variant='outline' className='cursor-pointer '>
+                  <User className='text-primary' />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent
@@ -73,7 +69,7 @@ const Navbar = async () => {
         )}
         <ModeToggle />
       </div>
-    </nav>
+    </StyledNavBar>
   );
 };
 
