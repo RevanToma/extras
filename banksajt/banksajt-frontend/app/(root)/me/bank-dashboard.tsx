@@ -55,7 +55,6 @@ const BankDashboard = ({
     }
   };
 
-
   return (
     <motion.div
       initial={{ y: '100%', opacity: 0 }}
@@ -68,7 +67,7 @@ const BankDashboard = ({
         <h1 className='text-3xl font-bold mb-4'>Transactions</h1>
 
         <div className='flex items-center justify-between w-full'>
-          <div>
+          <div className='flex flex-col items-start gap-2'>
             <p className='text-muted-foreground'>Your Balance</p>
             <AnimateBalance balance={accountBalance} />
           </div>

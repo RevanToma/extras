@@ -1,5 +1,6 @@
 import { motion, useAnimation } from 'motion/react';
 import { useEffect } from 'react';
+import CurrencySelector from './currency-selector';
 
 const AnimateBalance = ({ balance }: { balance: number }) => {
   const controls = useAnimation();
@@ -15,11 +16,11 @@ const AnimateBalance = ({ balance }: { balance: number }) => {
 
   return (
     <motion.h2
-      className='sm:text-2xl md:text-4xl font-bold text-green-600'
+      className='sm:text-2xl md:text-4xl font-bold'
       animate={controls}
       transition={{ duration: 0.5 }}
     >
-      ${balance.toFixed(2)}
+      <CurrencySelector baseAmount={balance} />
     </motion.h2>
   );
 };

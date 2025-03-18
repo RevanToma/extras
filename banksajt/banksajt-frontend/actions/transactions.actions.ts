@@ -34,7 +34,7 @@ export const getTransactions = async () => {
       }
     );
 
-    return response.data;
+    return response.data.transactions;
   } catch (error) {
     console.error('Error:', error);
   }

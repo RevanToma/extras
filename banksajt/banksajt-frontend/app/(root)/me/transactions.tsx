@@ -1,25 +1,59 @@
+'use client';
 import { TransactionHistory } from '@/types';
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
+import { Button } from '@/components/ui/button';
+import { ArrowDown, ArrowUp, Calendar, DollarSign } from 'lucide-react';
 
 const Transactions = ({
   transactionHistory,
 }: {
   transactionHistory: TransactionHistory[];
 }) => {
-  const sortedTransactions = useMemo(
-    () =>
-      [...transactionHistory].sort(
-        (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-      ),
-    [transactionHistory]
-  );
+  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc'),
+    [sortBy, setSortBy] = useState<'date' | 'amount'>('date');
 
+  const sortedTransactions = useMemo(() => {
+    return [...transactionHistory].sort((a, b) => {
+      if (sortBy === 'date') {
+        return sortOrder === 'asc'
+          ? new Date(a.date).getTime() - new Date(b.date).getTime()
+          : new Date(b.date).getTime() - new Date(a.date).getTime();
+      } else {
+        return sortOrder === 'asc' ? a.amount - b.amount : b.amount - a.amount;
+      }
+    });
+  }, [transactionHistory, sortOrder, sortBy]);
 
+  const toggleSortOrder = () => {
+    setSortOrder((prev) => (prev === 'asc' ? 'desc' : 'asc'));
+  };
+
+  const toggleSortBy = () => {
+    setSortBy((prev) => (prev === 'date' ? 'amount' : 'date'));
+  };
 
   return (
     <div className='text-left mt-6'>
       <h2 className='text-xl font-semibold mb-2'>Recent Transactions</h2>
+      <div className='flex justify-between py-2'>
+        <Button variant='outline' size='sm' onClick={toggleSortOrder}>
+          {sortOrder === 'asc' ? 'Ascending' : 'Descending'}
+          {sortOrder === 'asc' ? (
+            <ArrowUp size={16} />
+          ) : (
+            <ArrowDown size={16} />
+          )}
+        </Button>
+        <Button variant='outline' size='sm' onClick={toggleSortBy}>
+          Sort by {sortBy === 'date' ? 'Amount' : 'Date'}
+          {sortBy === 'date' ? (
+            <DollarSign size={16} />
+          ) : (
+            <Calendar size={16} />
+          )}
+        </Button>
+      </div>
       <motion.ul
         className='p-4 rounded-lg max-h-96 overflow-y-auto'
         initial='hidden'
