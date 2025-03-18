@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import useCountUp from '@/hooks/useCountUp';
+import Logo from './logo';
 
 const LandingPage = ({ totalUsers }: { totalUsers: number }) => {
   const animatedUserCount = useCountUp(totalUsers);
@@ -19,7 +20,7 @@ const LandingPage = ({ totalUsers }: { totalUsers: number }) => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
       >
-        Welcome to MoneyMate
+        Welcome to <Logo className='text-5xl ' />
       </motion.h1>
 
       <motion.p
