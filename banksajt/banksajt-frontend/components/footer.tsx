@@ -18,7 +18,7 @@ const Footer = () => {
           : 'bg-white text-gray-700 border-t border-gray-200'
       )}
     >
-      <div className='max-w-6xl mx-auto flex flex-col sm:flex-col md:flex-row lg:flex-row items-center justify-between gap-4'>
+      <div className='max-w-6xl mx-auto flex flex-col sm:flex-col md:flex-row lg:flex-row items-center justify-between gap-6'>
         <div className='text-center md:text-left'>
           <Logo />
           <p className='text-sm mt-1 text-muted-foreground'>
