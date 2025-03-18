@@ -55,6 +55,7 @@ const BankDashboard = ({
     }
   };
 
+
   return (
     <motion.div
       initial={{ y: '100%', opacity: 0 }}

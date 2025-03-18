@@ -15,6 +15,8 @@ const Transactions = ({
     [transactionHistory]
   );
 
+
+
   return (
     <div className='text-left mt-6'>
       <h2 className='text-xl font-semibold mb-2'>Recent Transactions</h2>

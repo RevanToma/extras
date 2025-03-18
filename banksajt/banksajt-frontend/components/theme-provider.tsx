@@ -7,5 +7,15 @@ export function ThemeProvider({
   children,
   ...props
 }: React.ComponentProps<typeof NextThemesProvider>) {
+
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setMounted(true);
+    }
+  }, [])
+
+  if (!mounted) return null;
   return <NextThemesProvider {...props}>{children}</NextThemesProvider>;
 }
