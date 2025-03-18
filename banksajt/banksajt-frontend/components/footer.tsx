@@ -5,6 +5,9 @@ import { ModeToggle } from './mode-toggle';
 import { useTheme } from 'next-themes';
 import { cn } from '@/lib/utils';
 import Logo from './logo';
+import FooterNavLinks from './footer-nav-links';
+
+const links = ['About', 'FAQ', 'Support', 'Privacy'];
 
 const Footer = () => {
   const { theme } = useTheme();
@@ -26,18 +29,11 @@ const Footer = () => {
           </p>
         </div>
         <div className='flex gap-6 text-sm'>
-          <Link href='/about' className='hover:text-primary transition'>
-            About
-          </Link>
-          <Link href='/faq' className='hover:text-primary transition'>
-            FAQ
-          </Link>
-          <Link href='/support' className='hover:text-primary transition'>
-            Support
-          </Link>
-          <Link href='/privacy' className='hover:text-primary transition'>
-            Privacy
-          </Link>
+          {links.map((link) => (
+            <FooterNavLinks key={link} href={`/${link.toLowerCase()}`}>
+              {link}
+            </FooterNavLinks>
+          ))}
         </div>
         <div className='flex flex-col sm:flex-col md:flex-row lg:flex-row gap-3 items-center'>
           <Button
