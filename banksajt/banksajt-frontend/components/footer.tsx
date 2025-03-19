@@ -14,8 +14,8 @@ const Footer = () => {
 
   const currentTheme =
     theme === 'dark' || theme === 'system'
-      ? 'bg-gradient-to-r from-gray-800 to-gray-900 text-gray-300'
-      : 'bg-white text-gray-900 shadow-md';
+      ? 'bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-gray-300 shadow-lg'
+      : 'bg-gradient-to-r from-white to-gray-100 text-gray-900 shadow-md';
 
   return (
     <footer
@@ -42,7 +42,7 @@ const Footer = () => {
           <Button
             asChild
             size='sm'
-            className='text-secondary bg-gradient-to-r from-emerald-400 to-sky-500 hover:from-emerald-500 hover:to-sky-800'
+            className='text-secondary bg-gradient-to-r from-emerald-400 to-sky-500 hover:from-emerald-500 hover:to-sky-800 transition duration-300'
           >
             <Link href='/sign-up'>Get Started</Link>
           </Button>

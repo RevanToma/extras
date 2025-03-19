@@ -7,8 +7,9 @@ const StyledNavBar = ({ children }: { children: React.ReactNode }) => {
 
   const currentTheme =
     theme === 'dark' || theme === 'system'
-      ? 'bg-gradient-to-r from-gray-800 to-gray-900 text-gray-300'
-      : 'bg-white text-gray-900 shadow-md';
+      ? 'bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-gray-300 shadow-lg'
+      : 'bg-gradient-to-r from-white to-gray-100 text-gray-900 shadow-md';
+
   return (
     <nav
       className={cn(
