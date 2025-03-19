@@ -1,9 +1,9 @@
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
-import userRoutes from './routes/userRoutes';
-import sessionRoutes from './routes/sessionRoutes';
-import accountRoutes from './routes/accountRoutes';
+import userRoutes from './routes/userRoutes.js';
+import sessionRoutes from './routes/sessionRoutes.js';
+import accountRoutes from './routes/accountRoutes.js';
 
 const app = express();
 const PORT = 3001;

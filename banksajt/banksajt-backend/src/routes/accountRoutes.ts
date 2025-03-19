@@ -3,8 +3,8 @@ import {
   getUser,
   handleTransaction,
   transactionHistory,
-} from '../controllers/accountController';
-import { getAuditLogs } from '../controllers/auditLogsController';
+} from '../controllers/accountController.js';
+import { getAuditLogs } from '../controllers/auditLogsController.js';
 
 const router = express.Router();
 

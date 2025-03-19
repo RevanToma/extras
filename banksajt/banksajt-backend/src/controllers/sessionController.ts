@@ -1,23 +1,41 @@
 import { Request, Response } from 'express';
 import crypto from 'crypto';
-import { users, sessions } from '../models/data';
-import { logAction } from '../utils/helpers';
 
-export const loginUser = (req: Request, res: Response): void => {
-  const { username, password } = req.body,
-    user = users.find(
-      (u) => u.username === username && u.password === password
-    );
+import { prisma } from '../db/prisma.js';
+import { logAction } from '../utils/helpers.js';
 
-  if (!user) {
-    res.status(401).json({ message: 'Invalid credentials' });
+export const loginUser = async (req: Request, res: Response): Promise<void> => {
+  const { username, password } = req.body;
+
+  if (!username || !password) {
+    res.status(400).json({ message: 'Username and password are required' });
     return;
   }
 
-  const token = crypto.randomBytes(16).toString('hex');
-  sessions.push({ userId: user.id, token });
+  try {
+    const user = await prisma.user.findUnique({
+      where: { username },
+    });
 
-  logAction(user.id, 'Logged in');
+    if (!user || user.password !== password) {
+      res.status(401).json({ message: 'Invalid credentials' });
+      return;
+    }
 
-  res.json({ token });
+    const token = crypto.randomBytes(16).toString('hex');
+
+    await prisma.session.create({
+      data: {
+        userId: user.id,
+        token,
+      },
+    });
+
+    logAction(user.id, 'Logged in');
+
+    res.json({ token });
+  } catch (error) {
+    console.error('Error logging in:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
 };

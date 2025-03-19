@@ -1,22 +1,27 @@
 import { Request } from 'express';
-import { auditLogs, sessions } from '../models/data';
+import { prisma } from '../db/prisma.js';
+export const getSession = async (req: Request) => {
+  const token = req.headers.authorization?.split(' ')[1];
 
-export const getSession = (req: Request): any => {
-  const authHeader = req.headers.authorization;
-
-  if (!authHeader || !authHeader.startsWith('Bearer ')) {
+  if (!token) {
     return null;
   }
 
-  const token = authHeader.split(' ')[1];
-  return sessions.find((s) => s.token === token);
+  return await prisma.session.findUnique({
+    where: { token },
+    include: { user: true },
+  });
 };
 
-export const logAction = (userId: number, action: string): void => {
-  auditLogs.push({
-    userId,
-    action,
-    date: new Date().toISOString(),
+export const logAction = async (
+  userId: string,
+  action: string
+): Promise<void> => {
+  await prisma.auditLogs.create({
+    data: {
+      userId,
+      action,
+    },
   });
   console.log(`Audit Log: User ${userId} - ${action}`);
 };

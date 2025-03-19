@@ -1,15 +1,36 @@
 import { Request, Response } from 'express';
-import { getSession } from '../utils/helpers';
-import { auditLogs } from '../models/data';
 
-export const getAuditLogs = (req: Request, res: Response): void => {
-  const session = getSession(req);
+import { prisma } from '../db/prisma.js';
 
-  if (!session) {
-    res.status(401).json({ message: 'Invalid or expired session' });
+export const getAuditLogs = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  const token = req.headers.authorization?.split(' ')[1];
+
+  if (!token) {
+    res.status(401).json({ message: 'Missing or invalid session token' });
     return;
   }
 
-  const userLogs = auditLogs.filter((log) => log.userId === session.userId);
-  res.json({ logs: userLogs });
+  try {
+    const session = await prisma.session.findUnique({
+      where: { token },
+      include: { user: true },
+    });
+
+    if (!session) {
+      res.status(401).json({ message: 'Invalid or expired session' });
+      return;
+    }
+
+    const userLogs = await prisma.auditLogs.findMany({
+      where: { userId: session.user.id },
+    });
+
+    res.json({ logs: userLogs });
+  } catch (error) {
+    console.error('Error fetching audit logs:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
 };
