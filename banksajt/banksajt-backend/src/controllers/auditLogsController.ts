@@ -1,23 +1,14 @@
 import { Request, Response } from 'express';
 
 import { prisma } from '../db/prisma.js';
+import { getSession } from '../utils/helpers.js';
 
 export const getAuditLogs = async (
   req: Request,
   res: Response
 ): Promise<void> => {
-  const token = req.headers.authorization?.split(' ')[1];
-
-  if (!token) {
-    res.status(401).json({ message: 'Missing or invalid session token' });
-    return;
-  }
-
   try {
-    const session = await prisma.session.findUnique({
-      where: { token },
-      include: { user: true },
-    });
+    const session = await getSession(req);
 
     if (!session) {
       res.status(401).json({ message: 'Invalid or expired session' });

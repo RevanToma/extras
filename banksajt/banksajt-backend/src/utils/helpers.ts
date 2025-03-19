@@ -1,16 +1,21 @@
 import { Request } from 'express';
 import { prisma } from '../db/prisma.js';
-export const getSession = async (req: Request) => {
+
+export const getSession = async (req: Request, includeAccounts = false) => {
   const token = req.headers.authorization?.split(' ')[1];
 
   if (!token) {
     return null;
   }
 
-  return await prisma.session.findUnique({
+  const sessionQuery = {
     where: { token },
-    include: { user: true },
-  });
+    include: {
+      user: includeAccounts ? { include: { accounts: true } } : true,
+    },
+  };
+
+  return await prisma.session.findUnique(sessionQuery);
 };
 
 export const logAction = async (

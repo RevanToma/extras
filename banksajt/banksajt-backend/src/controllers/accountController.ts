@@ -1,20 +1,11 @@
 import { Request, Response } from 'express';
 
 import { prisma } from '../db/prisma.js';
+import { getSession } from '../utils/helpers.js';
 
 export const getUser = async (req: Request, res: Response): Promise<void> => {
-  const token = req.headers.authorization?.split(' ')[1];
-
-  if (!token) {
-    res.status(401).json({ message: 'Unauthorized' });
-    return;
-  }
-
   try {
-    const session = await prisma.session.findUnique({
-      where: { token },
-      include: { user: { include: { accounts: true } } },
-    });
+    const session = await getSession(req, true);
 
     if (!session || !session.user) {
       res.status(401).json({ message: 'Invalid or expired session' });
@@ -36,23 +27,15 @@ export const getUser = async (req: Request, res: Response): Promise<void> => {
     res.status(500).json({ message: 'Internal server error' });
   }
 };
+
 export const handleTransaction = async (
   req: Request,
   res: Response
 ): Promise<void> => {
   const { amount, type } = req.body;
-  const token = req.headers.authorization?.split(' ')[1];
-
-  if (!token || !amount || amount <= 0) {
-    res.status(400).json({ message: 'Invalid request' });
-    return;
-  }
 
   try {
-    const session = await prisma.session.findUnique({
-      where: { token },
-      include: { user: true },
-    });
+    const session = await getSession(req);
 
     if (!session) {
       res.status(401).json({ message: 'Invalid or expired session' });
@@ -120,18 +103,8 @@ export const transactionHistory = async (
   req: Request,
   res: Response
 ): Promise<void> => {
-  const token = req.headers.authorization?.split(' ')[1];
-
-  if (!token) {
-    res.status(401).json({ message: 'Missing or invalid session token' });
-    return;
-  }
-
   try {
-    const session = await prisma.session.findUnique({
-      where: { token },
-      include: { user: true },
-    });
+    const session = await getSession(req);
 
     if (!session) {
       res.status(401).json({ message: 'Invalid or expired session' });
