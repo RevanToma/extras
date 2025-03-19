@@ -20,7 +20,7 @@ const Footer = () => {
   return (
     <footer
       className={cn(
-        'w-full p-6 text-center transition-all duration-300 my-10',
+        'w-full p-6 text-center transition-all duration-300 ',
         currentTheme
       )}
     >

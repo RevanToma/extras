@@ -13,3 +13,10 @@ export type AuditLogs = {
   action: string;
   timestamp: string;
 };
+
+export interface ScheduledPayment {
+  id: string;
+  amount: number;
+  date: string;
+  time: string;
+}

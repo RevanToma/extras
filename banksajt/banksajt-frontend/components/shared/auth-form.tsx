@@ -49,8 +49,18 @@ const AuthForm = ({
         action={formAction}
       >
         <div className='flex flex-col gap-5'>
-          <Input type='text' placeholder='Username' name='username' />
-          <Input type='password' placeholder='Password' name='password' />
+          <Input
+            type='text'
+            placeholder='Username'
+            name='username'
+            autoComplete='username'
+          />
+          <Input
+            type='password'
+            placeholder='Password'
+            name='password'
+            autoComplete='current-password'
+          />
         </div>
         <AuthButton text={buttonText} type={type} />
       </form>

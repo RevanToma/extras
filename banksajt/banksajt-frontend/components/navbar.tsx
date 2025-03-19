@@ -25,7 +25,7 @@ const Navbar = async () => {
   }
 
   return (
-    <StyledNavBar >
+    <StyledNavBar>
       <Logo />
       <div className='flex gap-4'>
         {isAuthenticated ? (
@@ -45,6 +45,12 @@ const Navbar = async () => {
                     <Link href='/me'>Dashboard</Link>
                   </Button>
                 </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Button variant='secondary'>
+                    <Link href='/scheduled-payments'>Scheduled Deposits</Link>
+                  </Button>
+                </DropdownMenuItem>
+
                 <DropdownMenuItem asChild>
                   <AuditLogsSheet auditLogs={auditLogs.logs} />
                 </DropdownMenuItem>

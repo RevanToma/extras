@@ -16,6 +16,7 @@ import {
 import { motion } from 'motion/react';
 import Transactions from './transactions';
 import BalanceGoal from '@/components/balance-goal';
+import { debounce } from 'lodash';
 
 const BankDashboard = ({
   accountBalance,
@@ -54,6 +55,10 @@ const BankDashboard = ({
       setIsLoading(false);
     }
   };
+
+  const handleInputChange = debounce((value) => {
+    setAmount(value);
+  }, 300);
 
   return (
     <motion.div
