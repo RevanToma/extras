@@ -11,9 +11,11 @@ import { useMemo } from 'react';
 const AuditLogsSheet = ({ auditLogs }: { auditLogs: AuditLogType[] }) => {
   const sortedLogs = useMemo(() => {
     return [...auditLogs].sort(
-      (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+      (a, b) =>
+        new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
     );
   }, [auditLogs]);
+
   return (
     <Sheet>
       <SheetTrigger asChild>
@@ -33,7 +35,7 @@ const AuditLogsSheet = ({ auditLogs }: { auditLogs: AuditLogType[] }) => {
                 key={index}
                 className='py-3 flex justify-between items-center text-sm sm:text-base '
               >
-                <span>{new Date(log.date).toLocaleString()}</span>
+                <span>{new Date(log.timestamp).toLocaleString()}</span>
                 <span className='font-medium'>{log.action}</span>
               </li>
             ))}

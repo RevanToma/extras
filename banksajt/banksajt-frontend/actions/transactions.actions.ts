@@ -9,7 +9,12 @@ export const makeTransaction = async (amount: number, type: BankAction) => {
   try {
     const response = await axios.post(
       `${process.env.NEXT_PUBLIC_BACKEND_BASE_URL}/me/accounts/transactions`,
-      { amount, type, token }
+      { amount, type },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
     );
 
     revalidatePath('/me');

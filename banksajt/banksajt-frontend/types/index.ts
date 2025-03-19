@@ -11,5 +11,5 @@ export type TransactionHistory = {
 export type AuditLogs = {
   userId: number;
   action: string;
-  date: string;
+  timestamp: string;
 };

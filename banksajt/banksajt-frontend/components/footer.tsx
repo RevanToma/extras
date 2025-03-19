@@ -12,13 +12,16 @@ const links = ['About', 'FAQ', 'Support', 'Privacy'];
 const Footer = () => {
   const { theme } = useTheme();
 
+  const currentTheme =
+    theme === 'dark' || theme === 'system'
+      ? 'bg-gradient-to-r from-gray-800 to-gray-900 text-gray-300'
+      : 'bg-white text-gray-900 shadow-md';
+
   return (
     <footer
       className={cn(
         'w-full p-6 text-center transition-all duration-300 my-10',
-        theme === 'dark'
-          ? 'bg-gradient-to-r from-gray-800 to-gray-900 text-gray-300'
-          : 'bg-white text-gray-700 border-t border-gray-200'
+        currentTheme
       )}
     >
       <div className='max-w-6xl mx-auto flex flex-col sm:flex-col md:flex-row lg:flex-row items-center justify-between gap-6'>

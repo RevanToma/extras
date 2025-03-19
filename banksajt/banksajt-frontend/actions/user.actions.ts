@@ -93,7 +93,7 @@ export const getUser = async () => {
       throw new Error('Invalid token');
     }
 
-    return response.data;
+    return response.data.user;
   } catch (error) {
     console.error('Error:', error);
   }
