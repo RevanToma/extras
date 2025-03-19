@@ -10,7 +10,7 @@ const LandingPage = ({ totalUsers }: { totalUsers: number }) => {
   const animatedUserCount = useCountUp(totalUsers);
 
   return (
-    <div className='flex flex-col items-center justify-center h-screen p-6 gap-6 relative overflow-hidden text-center'>
+    <div className='flex flex-col items-center justify-center min-h-screen p-6 gap-6 relative overflow-hidden text-center'>
       <div className='absolute inset-0 bg-gradient-radial from-emerald-500/10 to-transparent blur-3xl' />
 
       <motion.h1

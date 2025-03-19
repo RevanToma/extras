@@ -9,7 +9,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <main className='h-screen flex flex-col justify-between'>
+    <main className='h-screen flex  flex-col justify-between'>
       <Navbar />
       <ScheduledPaymentsProvider>{children}</ScheduledPaymentsProvider>
       <Footer />
