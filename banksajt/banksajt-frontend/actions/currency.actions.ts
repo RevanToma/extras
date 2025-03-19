@@ -11,6 +11,6 @@ export const getExchangeRates = async (baseCurrency: string = 'USD') => {
     return response.data.rates;
   } catch (error) {
     console.error('Currency API error:', error);
-    return null;
+    return {};
   }
 };

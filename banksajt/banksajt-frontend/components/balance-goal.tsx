@@ -47,12 +47,7 @@ const BalanceGoal = ({ balance }: { balance: number }) => {
   };
 
   return (
-    <motion.div
-      className='p-4 bg-muted rounded-lg shadow-lg w-full mt-6 flex flex-col gap-2'
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, ease: 'easeOut' }}
-    >
+    <div className='p-4 bg-muted rounded-lg shadow-lg w-full mt-6 flex flex-col gap-2'>
       <h3 className='text-lg font-semibold text-center '>🎯 Savings Goal</h3>
 
       <Progress value={progress} className='w-full' />
@@ -104,7 +99,7 @@ const BalanceGoal = ({ balance }: { balance: number }) => {
           </span>
         </p>
       )}
-    </motion.div>
+    </div>
   );
 };
 
