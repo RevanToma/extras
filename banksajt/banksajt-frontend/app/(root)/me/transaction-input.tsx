@@ -33,6 +33,7 @@ const TransactionInput = () => {
       await transactionMutation.mutateAsync({ amount: convertedAmount, type });
 
       setAmount('');
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       alert(error.message || 'Transaction failed!');
     } finally {

@@ -165,7 +165,7 @@ export const getTotalUsers = async () => {
       throw new Error('Something went wrong');
     }
 
-    return response.data.users;
+    return response.data.users as number;
   } catch (error) {
     console.error('Error:', error);
   }

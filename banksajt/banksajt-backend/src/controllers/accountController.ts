@@ -12,8 +12,9 @@ export const getUser = async (req: Request, res: Response): Promise<void> => {
       return;
     }
 
-    const account =
-      session.user.accounts.length > 0 ? session.user.accounts[0] : null;
+    const account = await prisma.account.findFirst({
+      where: { userId: session.user.id },
+    });
 
     res.json({
       user: {

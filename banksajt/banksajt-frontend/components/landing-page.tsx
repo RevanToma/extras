@@ -2,14 +2,13 @@
 
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { useTheme } from 'next-themes';
+
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
-const DarkBankingLanding = () => {
-  const { theme } = useTheme(),
-    [users, setUsers] = useState(12500),
+const LandingPage = () => {
+  const [users, setUsers] = useState(12500),
     [transactions, setTransactions] = useState(200000),
     [moneyMoved, setMoneyMoved] = useState(7500000);
 
@@ -100,4 +99,4 @@ const DarkBankingLanding = () => {
   );
 };
 
-export default DarkBankingLanding;
+export default LandingPage;

@@ -12,7 +12,7 @@ const AnimateBalance = ({ balance }: { balance: number }) => {
       y: [10, 0],
       transition: { duration: 0.5, ease: 'easeOut' },
     });
-  }, [balance]);
+  }, [balance, controls]);
 
   return (
     <h2 className='sm:text-2xl md:text-4xl font-bold'>

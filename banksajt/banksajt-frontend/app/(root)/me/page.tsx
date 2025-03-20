@@ -9,6 +9,8 @@ export const metadata: Metadata = {
   title: 'Account',
 };
 
+export const dynamic = 'force-dynamic';
+
 const AccountPage = async () => {
   const userData = await getUser(),
     transactionsHistory = await getTransactions();

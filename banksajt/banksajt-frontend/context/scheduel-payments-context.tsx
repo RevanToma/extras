@@ -4,6 +4,7 @@ import { makeTransaction } from '@/actions/transactions.actions';
 import { toast } from 'sonner';
 import { ScheduledPayment } from '@/types';
 import { getUser } from '@/actions/user.actions';
+import { v4 as uuidv4 } from 'uuid';
 
 interface ScheduledPaymentsContextType {
   payments: ScheduledPayment[];
@@ -41,7 +42,7 @@ export const ScheduledPaymentsProvider = ({
       }
 
       const newPayment: ScheduledPayment = {
-        id: crypto.randomUUID(),
+        id: uuidv4(),
         amount,
         date,
         time,
