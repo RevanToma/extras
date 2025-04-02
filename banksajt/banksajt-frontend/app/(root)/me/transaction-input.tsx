@@ -50,13 +50,18 @@ const TransactionInput = () => {
         onChange={(e) => setAmount(e.target.value)}
         className='sm:w-full md:w-2/3'
       />
-      <Button onClick={() => handleTransaction('deposit')} disabled={isLoading}>
+      <Button
+        onClick={() => handleTransaction('deposit')}
+        disabled={isLoading}
+        className='cursor-pointer'
+      >
         {isLoading ? 'Processing...' : 'Deposit'}
       </Button>
       <Button
         onClick={() => handleTransaction('withdraw')}
         variant='destructive'
         disabled={isLoading}
+        className='cursor-pointer'
       >
         {isLoading ? 'Processing...' : 'Withdraw'}
       </Button>

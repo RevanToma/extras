@@ -55,6 +55,11 @@ const Navbar = async () => {
                   <AuditLogsSheet auditLogs={auditLogs.logs} />
                 </DropdownMenuItem>
                 <DropdownMenuItem asChild>
+                  <Button>
+                    <Link href='/loan'>Request Loan</Link>
+                  </Button>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
                   <Button
                     variant='destructive'
                     onClick={signOutUser}

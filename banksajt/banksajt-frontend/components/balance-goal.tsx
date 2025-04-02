@@ -72,7 +72,7 @@ const BalanceGoal = ({ balance }: { balance: number }) => {
         <Button
           onClick={handleSetGoal}
           size='sm'
-          className='w-full sm:w-full md:w-auto lg:w-auto'
+          className='w-full sm:w-full md:w-auto lg:w-auto cursor-pointer'
         >
           Set Goal
         </Button>
@@ -80,7 +80,7 @@ const BalanceGoal = ({ balance }: { balance: number }) => {
           onClick={handleResetGoal}
           size='sm'
           variant='destructive'
-          className='w-full sm:w-full md:w-auto lg:w-auto'
+          className='w-full sm:w-full md:w-auto lg:w-auto cursor-pointer'
         >
           Reset
         </Button>

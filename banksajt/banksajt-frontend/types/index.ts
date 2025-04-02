@@ -20,3 +20,13 @@ export interface ScheduledPayment {
   date: string;
   time: string;
 }
+
+export type LoanStatus = 'pending' | 'approved' | 'rejected';
+
+export interface Loan {
+  id: string;
+  amount: number;
+  reason: string;
+  status: LoanStatus;
+  date: string;
+}
