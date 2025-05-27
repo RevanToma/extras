@@ -5,15 +5,16 @@ import MealItem from './MealItem';
 
 type MealsListProps = {
   displayedMeals: Meal[];
+  bgColor?: string;
 };
 
-const MealsList: React.FC<MealsListProps> = ({ displayedMeals }) => {
+const MealsList: React.FC<MealsListProps> = ({ displayedMeals, bgColor }) => {
   const renderMealItem = ({ item }: { item: Meal }) => {
     return <MealItem data={item} />;
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: bgColor }]}>
       <FlatList
         data={displayedMeals}
         keyExtractor={(item) => item.id}

@@ -1,5 +1,6 @@
 import MealsList from '@/components/MealsList';
 import { CATEGORIES, MEALS } from '@/data';
+import { hexToRgba } from '@/utils';
 import { useLocalSearchParams, useNavigation } from 'expo-router';
 import { useLayoutEffect } from 'react';
 
@@ -13,14 +14,22 @@ const MealsOverviewScreen = () => {
     meal.categoryIds.includes(catId)
   );
 
+  const category = CATEGORIES.find((cat) => cat.id === catId);
+
   useLayoutEffect(() => {
-    const category = CATEGORIES.find((cat) => cat.id === catId);
     if (category) {
-      navigation.setOptions({ title: category.title });
+      const rgbaColor = hexToRgba(category.color, 0.9);
+
+      navigation.setOptions({
+        title: category.title,
+        headerStyle: { backgroundColor: rgbaColor },
+      });
     }
   }, [catId, navigation]);
 
-  return <MealsList displayedMeals={displayedMeals} />;
+  return (
+    <MealsList displayedMeals={displayedMeals} bgColor={category?.color} />
+  );
 };
 
 export default MealsOverviewScreen;
