@@ -1,0 +1,14 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 1rem;
+  font-size: 1.2rem;
+}
+
+#list {
+  padding: 1rem;
+}

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="sv">
+  <head>
+    <meta charset="utf-8" />
+    <title>Playlist Builder</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h1>Playlist Builder</h1>
+
+    <form id="track-form">
+      <input id="title" type="text" placeholder="Titel" required />
+      <input id="duration" type="text" placeholder="mm:ss" required />
+      <button type="submit">Lägg till</button>
+    </form>
+
+    <ul id="list"></ul>
+    <p>Total tid: <span id="total">0:00</span></p>
+
+    <script type="module" src="dist/main.js"></script>
+  </body>
+</html>
