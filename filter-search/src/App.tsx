@@ -122,7 +122,6 @@ function App() {
     }
   }
 
-  // Apply filters in sequence
   let filtered = products;
 
   // 1. Filtrera produkter med regex
