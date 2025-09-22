@@ -5,5 +5,3 @@ export type Product = {
   inStock: boolean;
   tags: string[];
 };
-
-export type ReadonlyProduct = Readonly<Product>;
