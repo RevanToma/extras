@@ -25,9 +25,9 @@ import {
 function App() {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const filter = searchParams.get('filter') || '';
-  const onlyStock = searchParams.get('stock') === 'true';
-  const sortDir = (searchParams.get('sort') as 'asc' | 'desc') || 'asc';
+  const filter = searchParams.get('filter') || '',
+    onlyStock = searchParams.get('stock') === 'true',
+    sortDir = (searchParams.get('sort') as 'asc' | 'desc') || 'asc';
 
   const updateFilter = (newFilter: string) => {
     setSearchParams((prev) => {
