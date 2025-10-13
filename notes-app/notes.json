@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "title": "Första noten",
+    "body": "Hej! Detta är min första anteckning.",
+    "favorite": false
+  },
+  {
+    "id": 2,
+    "title": "Shopping lista",
+    "body": "Mjölk, bröd, ägg, ost",
+    "favorite": true
+  },
+  {
+    "id": 5,
+    "title": "testing",
+    "body": "heejl",
+    "favorite": true
+  },
+  {
+    "id": 6,
+    "title": "edf",
+    "body": "efrefe",
+    "favorite": false
+  }
+]
