@@ -1,24 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import fs from 'fs/promises';
-import path from 'path';
-import { Note } from '@/types';
-
-const filePath = path.join(process.cwd(), 'notes.json');
-
-async function readNotes(): Promise<Note[]> {
-  try {
-    const data = await fs.readFile(filePath, 'utf-8');
-    return JSON.parse(data);
-  } catch {
-    const initial: Note[] = [];
-    await writeNotes(initial);
-    return initial;
-  }
-}
-
-async function writeNotes(notes: Note[]) {
-  await fs.writeFile(filePath, JSON.stringify(notes, null, 2), 'utf-8');
-}
+import { db, notes } from '@/db';
+import { eq } from 'drizzle-orm';
 
 export async function GET(
   _request: NextRequest,
@@ -26,13 +8,21 @@ export async function GET(
 ) {
   try {
     const { id } = await params,
-      notes = await readNotes(),
       noteId = parseInt(id),
-      note = notes.find((n) => n.id === noteId);
+      rows = await db.select().from(notes).where(eq(notes.id, noteId));
 
-    if (!note) {
+    const row = rows[0];
+    if (!row) {
       return NextResponse.json({ error: 'Note not found' }, { status: 404 });
     }
+
+    const note = {
+      id: Number(row.id),
+      title: row.title,
+      body: row.content || '',
+      favorite: Boolean(row.favorite),
+      createdAt: row.createdAt.toISOString(),
+    };
 
     return NextResponse.json(note);
   } catch (error) {
@@ -54,23 +44,31 @@ export async function PUT(
       return NextResponse.json({ error: 'Title is required' }, { status: 400 });
     }
 
-    const notes = await readNotes(),
-      noteIndex = notes.findIndex((n) => n.id === noteId);
+    const result = await db
+      .update(notes)
+      .set({
+        title: title.trim(),
+        content: noteBody?.trim() || '',
+        favorite: favorite ? 1 : 0,
+      })
+      .where(eq(notes.id, noteId))
+      .execute();
 
-    if (noteIndex === -1) {
+    const rows = await db.select().from(notes).where(eq(notes.id, noteId));
+    const row = rows[0];
+    if (!row) {
       return NextResponse.json({ error: 'Note not found' }, { status: 404 });
     }
 
-    notes[noteIndex] = {
-      ...notes[noteIndex],
-      title: title.trim(),
-      body: noteBody?.trim() || '',
-      favorite: Boolean(favorite),
+    const updated = {
+      id: Number(row.id),
+      title: row.title,
+      body: row.content || '',
+      favorite: Boolean(row.favorite),
+      createdAt: row.createdAt.toISOString(),
     };
 
-    await writeNotes(notes);
-
-    return NextResponse.json(notes[noteIndex]);
+    return NextResponse.json(updated);
   } catch (error) {
     return NextResponse.json(
       { error: 'Failed to update note' },
@@ -86,18 +84,24 @@ export async function DELETE(
   try {
     const { id } = await params,
       noteId = parseInt(id),
-      notes = await readNotes(),
-      noteIndex = notes.findIndex((n) => n.id === noteId);
+      rows = await db.select().from(notes).where(eq(notes.id, noteId));
 
-    if (noteIndex === -1) {
+    const row = rows[0];
+    if (!row) {
       return NextResponse.json({ error: 'Note not found' }, { status: 404 });
     }
 
-    const deletedNote = notes[noteIndex];
-    notes.splice(noteIndex, 1);
-    await writeNotes(notes);
+    await db.delete(notes).where(eq(notes.id, noteId)).execute();
 
-    return NextResponse.json(deletedNote);
+    const deleted = {
+      id: Number(row.id),
+      title: row.title,
+      body: row.content || '',
+      favorite: Boolean(row.favorite),
+      createdAt: row.createdAt.toISOString(),
+    };
+
+    return NextResponse.json(deleted);
   } catch (error) {
     return NextResponse.json(
       { error: 'Failed to delete note' },

@@ -26,7 +26,11 @@ export const notesListQueryOptions = () => ({
     if (!response.ok) {
       throw new Error('Failed to fetch notes');
     }
-    return response.json();
+    const data: Note[] = await response.json();
+    return data.sort(
+      (a, b) =>
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    );
   },
 });
 
@@ -45,7 +49,9 @@ export const noteByIdQueryOptions = (id: number) => ({
   },
 });
 
-export const createNote = async (note: Omit<Note, 'id'>): Promise<Note> => {
+export const createNote = async (
+  note: Omit<Note, 'id' | 'createdAt'>
+): Promise<Note> => {
   const baseUrl = getBaseUrl();
   const response = await fetch(`${baseUrl}/api/notes`, {
     method: 'POST',
@@ -73,7 +79,11 @@ export const updateNote = async (
     headers: {
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(note),
+    body: JSON.stringify({
+      title: note.title,
+      body: note.body,
+      favorite: note.favorite,
+    }),
   });
 
   if (!response.ok) {

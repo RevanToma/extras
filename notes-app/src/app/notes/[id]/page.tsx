@@ -70,6 +70,7 @@ export default function NotePage({ params }: NotePageProps) {
         title,
         body,
         favorite,
+        createdAt: new Date().toISOString(),
       };
 
       queryClient.setQueryData(notesKeys.detail(id), optimisticNote);
@@ -226,7 +227,10 @@ export default function NotePage({ params }: NotePageProps) {
                 </div>
               ) : (
                 <div>
-                  <CardTitle className='text-2xl mb-2'>{note.title}</CardTitle>
+                  <CardTitle className='text-2xl mb-1'>{note.title}</CardTitle>
+                  <p className='text-xs text-muted-foreground mb-2'>
+                    {new Date(note.createdAt).toLocaleString()}
+                  </p>
                   {note.favorite && (
                     <div className='flex items-center gap-1 mb-2'>
                       <Star className='h-4 w-4 text-yellow-500 fill-current' />

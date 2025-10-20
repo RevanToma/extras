@@ -3,4 +3,5 @@ export type Note = {
   title: string;
   body?: string;
   favorite: boolean;
+  createdAt: string;
 };

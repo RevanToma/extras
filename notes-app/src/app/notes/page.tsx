@@ -48,6 +48,7 @@ export default function NotesPage() {
         title: newNote.title,
         body: newNote.body || '',
         favorite: newNote.favorite,
+        createdAt: new Date().toISOString(),
       };
 
       queryClient.setQueryData<Note[]>(notesKeys.lists(), (old) => [
@@ -179,36 +180,45 @@ export default function NotesPage() {
             </CardContent>
           </Card>
         ) : (
-          [...notes].reverse().map((note) => (
-            <Card
-              key={note.id}
-              className='cursor-pointer hover:shadow-md transition-shadow'
-              onClick={() => router.push(`/notes/${note.id}`)}
-            >
-              <CardHeader>
-                <div className='flex items-start justify-between'>
-                  <div className='flex-1'>
-                    <CardTitle className='text-lg'>{note.title}</CardTitle>
-                    {note.favorite && (
-                      <div className='flex items-center gap-1 mt-1'>
-                        <Star className='h-4 w-4 text-yellow-500 fill-current' />
-                        <span className='text-sm text-yellow-600'>
-                          Favorite
-                        </span>
-                      </div>
-                    )}
+          [...notes]
+            .sort(
+              (a, b) =>
+                new Date(b.createdAt).getTime() -
+                new Date(a.createdAt).getTime()
+            )
+            .map((note) => (
+              <Card
+                key={note.id}
+                className='cursor-pointer hover:shadow-md transition-shadow'
+                onClick={() => router.push(`/notes/${note.id}`)}
+              >
+                <CardHeader>
+                  <div className='flex items-start justify-between'>
+                    <div className='flex-1'>
+                      <CardTitle className='text-lg'>{note.title}</CardTitle>
+                      <p className='text-xs text-muted-foreground'>
+                        {new Date(note.createdAt).toLocaleString()}
+                      </p>
+                      {note.favorite && (
+                        <div className='flex items-center gap-1 mt-1'>
+                          <Star className='h-4 w-4 text-yellow-500 fill-current' />
+                          <span className='text-sm text-yellow-600'>
+                            Favorite
+                          </span>
+                        </div>
+                      )}
+                    </div>
                   </div>
-                </div>
-              </CardHeader>
-              {note.body && (
-                <CardContent>
-                  <CardDescription className='line-clamp-3'>
-                    {note.body}
-                  </CardDescription>
-                </CardContent>
-              )}
-            </Card>
-          ))
+                </CardHeader>
+                {note.body && (
+                  <CardContent>
+                    <CardDescription className='line-clamp-3'>
+                      {note.body}
+                    </CardDescription>
+                  </CardContent>
+                )}
+              </Card>
+            ))
         )}
       </div>
     </div>
