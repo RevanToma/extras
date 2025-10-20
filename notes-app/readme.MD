@@ -37,12 +37,11 @@ npm run dev
 
 ## Features
 
-- ✅ Create, read, update, delete notes
-- ✅ MySQL database with Drizzle ORM
-- ✅ Optimistic updates for smooth UX
-- ✅ Notes sorted by creation date (newest first)
-- ✅ Date display in UI
-- ✅ Full CRUD operations
+- Create, read, update, delete notes
+- MySQL database with Drizzle ORM
+- Optimistic updates for smooth UX
+- Notes sorted by creation date (newest first)
+- Date display in UI
 
 ## Database Commands
 
