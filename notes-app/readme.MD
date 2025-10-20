@@ -35,8 +35,6 @@ npm run drizzle:push
 npm run dev
 ```
 
-Open `http://localhost:3000/notes` to use the app.
-
 ## Features
 
 - ✅ Create, read, update, delete notes
