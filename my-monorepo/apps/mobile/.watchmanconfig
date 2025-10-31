@@ -1,0 +1,8 @@
+{
+  "ignore_dirs": [
+    "../strapi/dist",
+    "../strapi/.cache",
+    "../web/.next",
+    "../docs/.next"
+  ]
+}
